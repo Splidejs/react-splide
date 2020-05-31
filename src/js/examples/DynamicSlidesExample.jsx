@@ -45,7 +45,7 @@ export default class DynamicSlidesExample extends React.Component {
 	 */
 	render() {
 		return (
-			<div>
+			<div className="wrapper">
 				<Splide
 					options={ {
 						rewind : true,
@@ -55,13 +55,15 @@ export default class DynamicSlidesExample extends React.Component {
 					} }
 				>
 					{ this.state.slides.map( slide => (
-						<SplideSlide className="splide__slide" key={ slide.src }>
+						<SplideSlide key={ slide.src }>
 							<img src={ slide.src } alt={ slide.alt } />
 						</SplideSlide>
 					) ) }
 				</Splide>
 
-				<button onClick={ this.onClick }>Add Slide</button>
+				<div className="controls">
+					<button onClick={ this.onClick }>Add Slide</button>
+				</div>
 			</div>
 		);
 	}

@@ -1,0 +1,53 @@
+$color: #00bfff;
+
+.wrapper {
+  max-width: 800px;
+}
+
+.controls {
+  text-align: center;
+
+  button {
+    border: none;
+    background: $color;
+    color: white;
+    cursor: pointer;
+    padding: .3em 1em;
+    border-radius: 2em;
+    outline: none;
+    transition: background-color .2s linear;
+
+    &:hover {
+      background: darken( $color, 20% );
+    }
+  }
+}
+
+.splide {
+  padding: 3em 0;
+
+  &--nav {
+    padding: 0;
+  }
+
+  &__autoplay {
+    margin-top: 1em;
+    text-align: center;
+  }
+
+  &__play, &__pause {
+    border: none;
+    background: $color;
+    color: white;
+    transition: background-color .2s linear;
+    cursor: pointer;
+    padding: .3em 1em;
+    border-radius: 2em;
+    outline: none;
+    margin: 0 .2em;
+
+    &:hover {
+      background: darken( $color, 20% );
+    }
+  }
+}

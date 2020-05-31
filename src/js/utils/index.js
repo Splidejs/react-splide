@@ -6,6 +6,11 @@
  */
 
 /**
+ * No operation.
+ */
+export function noop() {}
+
+/**
  * Join class names with/without condition.
  *
  * @param {string|Object} args - A class name itself or { className: condition } object.

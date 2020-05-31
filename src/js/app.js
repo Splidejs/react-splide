@@ -7,15 +7,22 @@
 
 import React from 'react';
 import { render } from 'react-dom';
+
 import BasicExample from './examples/BasicExample';
-import DynamicSlidesExample from './examples/DynamicSlidesExample';
+import AutoplayExample from './examples/AutoplayExample';
 import ThumbnailExample from './examples/ThumbnailsExample';
+import DynamicSlidesExample from './examples/DynamicSlidesExample';
+
+import '@splidejs/splide/dist/css/themes/splide-skyblue.min.css';
+import '../sass/example.scss';
+
 
 class App extends React.Component {
 	render() {
 		return (
 			<div id="examples">
 				<BasicExample />
+				<AutoplayExample />
 				<DynamicSlidesExample />
 				<ThumbnailExample />
 			</div>
@@ -23,4 +30,6 @@ class App extends React.Component {
 	}
 }
 
-render( <App/>, document.getElementById( 'app' ) );
+document.addEventListener( 'DOMContentLoaded', () => {
+	render( <App/>, document.getElementById( 'app' ) );
+} );

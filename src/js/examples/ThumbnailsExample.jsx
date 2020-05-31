@@ -39,8 +39,8 @@ export default class ThumbnailsExample extends React.Component {
 	 * @return {ReactNode[]}
 	 */
 	renderSlides() {
-		return createSlides( 10 ).map( slide => (
-			<SplideSlide className="splide__slide" key={ slide.src }>
+		return createSlides().map( slide => (
+			<SplideSlide key={ slide.src }>
 				<img src={ slide.src } alt={ slide.alt } />
 			</SplideSlide>
 		) );
@@ -53,12 +53,12 @@ export default class ThumbnailsExample extends React.Component {
 	 */
 	render() {
 		const primaryOptions = {
-			type    : 'loop',
-			width   : 800,
-			perPage : 2,
-			perMove : 1,
-			gap     : '1rem',
-			autoplay: true,
+			type      : 'loop',
+			width     : 800,
+			perPage   : 2,
+			perMove   : 1,
+			gap       : '1rem',
+			pagination: false,
 		};
 
 		const secondaryOptions = {
@@ -66,6 +66,7 @@ export default class ThumbnailsExample extends React.Component {
 			rewind      : true,
 			width       : 800,
 			gap         : '1rem',
+			pagination  : false,
 			fixedWidth  : 110,
 			fixedHeight : 70,
 			cover       : true,

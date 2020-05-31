@@ -18,13 +18,14 @@ export default () => {
 	return (
 		<Splide
 			options={ {
-				rewind : true,
-				width  : 800,
-				perPage: 2,
-				perMove: 1,
-				gap    : '1rem',
+				type        : 'loop',
+				width       : 800,
+				gap         : '1rem',
+				autoplay    : true,
+				pauseOnFocus: false,
 			} }
-			onMoved={ ( splide, newIndex ) => { console.log( 'moved', newIndex ) } }
+			hasAutoplayControls
+			hasAutoplayProgress
 		>
 			{ createSlides().map( slide => (
 				<SplideSlide key={ slide.src }>
