@@ -1,5 +1,5 @@
 /**
- * Render examples.
+ * The App component just for rendering examples.
  *
  * @author    Naotoshi Fujita
  * @copyright Naotoshi Fujita. All rights reserved.
@@ -16,7 +16,9 @@ import DynamicSlidesExample from './examples/DynamicSlidesExample';
 import '@splidejs/splide/dist/css/themes/splide-skyblue.min.css';
 import '../sass/example.scss';
 
-
+/**
+ * The App component just for rendering examples.
+ */
 class App extends React.Component {
 	render() {
 		return (
