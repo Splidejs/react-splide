@@ -1,4 +1,3 @@
-# React Splide
 <p align="center">
     <a href="https://splidejs.com" target="_blank">
         <img width="120px" src="images/splide-logo.png">
@@ -8,6 +7,7 @@
     </a>
 </p>
 
+# React Splide
 **[React](https://reactjs.org/) component for the [Splide](https://github.com/Splidejs/splide) slider library.**
 * [Splide](https://github.com/Splidejs/splide)
 
