@@ -1,10 +1,10 @@
 {
   "name": "@splidejs/react-splide",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "The Splide component for React.",
   "author": "Naotoshi Fujita",
   "license": "MIT",
-  "main": "dist/js/react-splide.js",
+  "main": "dist/js/index.js",
   "keywords": [
     "splide",
     "slider",
