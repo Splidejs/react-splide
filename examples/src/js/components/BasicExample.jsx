@@ -6,8 +6,8 @@
  */
 
 import React from 'react';
-import { Splide, SplideSlide } from '../';
-import { createSlides } from "../utils/slides";
+import { Splide, SplideSlide } from '../../../../src/js';
+import { createSlides } from "../../../../src/js/utils/slides";
 
 /**
  * The function for the basic example.
@@ -18,14 +18,13 @@ export default () => {
 	return (
 		<Splide
 			options={ {
-				type        : 'loop',
-				width       : 800,
-				gap         : '1rem',
-				autoplay    : true,
-				pauseOnFocus: false,
+				rewind : true,
+				width  : 800,
+				perPage: 2,
+				perMove: 1,
+				gap    : '1rem',
 			} }
-			hasAutoplayControls
-			hasAutoplayProgress
+			onMoved={ ( splide, newIndex ) => { console.log( 'moved', newIndex ) } }
 		>
 			{ createSlides().map( slide => (
 				<SplideSlide key={ slide.src }>

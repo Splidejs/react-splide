@@ -1,11 +1,10 @@
 {
   "name": "@splidejs/react-splide",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "The Splide component for React.",
   "author": "Naotoshi Fujita",
   "license": "MIT",
-  "main": "src/js/index.js",
-  "module": "src/js/index.js",
+  "main": "dist/js/react-splide.js",
   "keywords": [
     "splide",
     "slider",
@@ -23,12 +22,15 @@
   "bugs": {
     "url": "https://github.com/Splidejs/react-splide/issues"
   },
+  "peerDependencies": {
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
+  },
   "dependencies": {
-    "@splidejs/splide": "^2.3.5",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "@splidejs/splide": "^2.3.5"
   },
   "devDependencies": {
+    "@babel/cli": "^7.10.1",
     "@babel/core": "^7.10.1",
     "@babel/preset-env": "^7.10.1",
     "@babel/preset-react": "^7.10.1",
@@ -36,6 +38,8 @@
     "css-loader": "^3.5.3",
     "gulp": "^4.0.2",
     "node-sass": "^4.14.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "sass-loader": "^8.0.2",
     "serialize-javascript": "^3.1.0",
     "style-loader": "^1.2.1",
@@ -43,6 +47,7 @@
     "webpack-stream": "^5.2.1"
   },
   "scripts": {
-    "build:js": "gulp build:js"
+    "build:example": "gulp build:js",
+    "transpile": "babel src/js -d dist/js --copy-files"
   }
 }

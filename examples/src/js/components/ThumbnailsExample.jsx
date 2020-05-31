@@ -6,8 +6,8 @@
  */
 
 import React from 'react';
-import { Splide, SplideSlide } from '../';
-import { createSlides } from "../utils/slides";
+import { Splide, SplideSlide } from '../../../../src/js';
+import { createSlides } from "../../../../src/js/utils/slides";
 
 /**
  * The class for the thumbnail slider example.

@@ -8,9 +8,9 @@ const webpackStream = require( 'webpack-stream' );
  * Webpack config.
  */
 const config = {
-	entry: './src/js/app.js',
+	entry: './examples/src/js/app.js',
 	output: {
-		filename: 'react-splide.js',
+		filename: 'examples.js',
 	},
 	module: {
 		rules: [
@@ -39,6 +39,5 @@ const config = {
  * Build a script file.
  */
 gulp.task( 'build:js', () => {
-	return webpackStream( { config } )
-		.pipe( gulp.dest( './dist/js' ) );
+	return webpackStream( { config } ).pipe( gulp.dest( './examples/dist/js' ) );
 } );

@@ -8,10 +8,10 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import BasicExample from './examples/BasicExample';
-import AutoplayExample from './examples/AutoplayExample';
-import ThumbnailExample from './examples/ThumbnailsExample';
-import DynamicSlidesExample from './examples/DynamicSlidesExample';
+import BasicExample from './components/BasicExample';
+import AutoplayExample from './components/AutoplayExample';
+import ThumbnailExample from './components/ThumbnailsExample';
+import DynamicSlidesExample from './components/DynamicSlidesExample';
 
 import '@splidejs/splide/dist/css/themes/splide-skyblue.min.css';
 import '../sass/example.scss';
