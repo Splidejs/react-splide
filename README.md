@@ -18,6 +18,7 @@ $ npm install @splidejs/react-splide
 ```
 
 ## Usage
+### Components
 Import `Splide` and `SplideSlide` components:
 ```javascript
 import { Splide, SplideSlide } from '@splidejs/react-splide';
