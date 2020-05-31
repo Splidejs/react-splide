@@ -1,6 +1,11 @@
 # React Splide
-<p class="center">
-    <img src="images/hero.png" style="max-width: 300px">
+<p align="center">
+    <a href="https://splidejs.com" target="_blank">
+        <img width="120px" src="images/splide-logo.png">
+    </a>
+    <a href="https://reactjs.org/" target="_blank">
+        <img width="120px" src="images/react-logo.png">
+    </a>
 </p>
 
 **[React](https://reactjs.org/) component for the [Splide](https://github.com/Splidejs/splide) slider library.**
