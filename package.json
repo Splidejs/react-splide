@@ -1,7 +1,7 @@
 {
   "name": "@splidejs/react-splide",
   "version": "0.1.1",
-  "description": "The React component for Splide.",
+  "description": "The Splide component for React.",
   "author": "Naotoshi Fujita",
   "license": "MIT",
   "main": "src/js/index.js",

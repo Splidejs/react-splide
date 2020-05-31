@@ -8,7 +8,7 @@
 </p>
 
 # React Splide
-**[React](https://reactjs.org/) component for the [Splide](https://github.com/Splidejs/splide) slider library.**
+**React Splide is the [Splide](https://github.com/Splidejs/splide) component for React.**
 * [Splide](https://github.com/Splidejs/splide)
 
 ## Installation
