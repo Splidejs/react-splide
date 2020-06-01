@@ -1,7 +1,33 @@
 $color: #00bfff;
 
+body {
+  margin: 0;
+  font-size: 16px;
+  padding: 1rem;
+  font-family: Montserrat, sans-serif;
+  color: #333;
+}
+
+img {
+  width: 100%;
+  height : auto;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+
+hr {
+  border: 0;
+  border-bottom: 3px solid #eee;
+  width: 200px;
+  margin: 0 auto;
+}
+
 .wrapper {
   max-width: 800px;
+  margin: 4rem auto;
 }
 
 .controls {
@@ -12,8 +38,8 @@ $color: #00bfff;
     background: $color;
     color: white;
     cursor: pointer;
-    padding: .3em 1em;
-    border-radius: 2em;
+    padding: .3rem 1rem;
+    border-radius: 2rem;
     outline: none;
     transition: background-color .2s linear;
 
@@ -24,14 +50,18 @@ $color: #00bfff;
 }
 
 .splide {
-  padding: 3em 0;
+  margin-bottom: 3rem;
 
   &--nav {
     padding: 0;
   }
 
+  &__pagination {
+    bottom: -2em;
+  }
+
   &__autoplay {
-    margin-top: 1em;
+    margin-top: 1rem;
     text-align: center;
   }
 
@@ -41,10 +71,10 @@ $color: #00bfff;
     color: white;
     transition: background-color .2s linear;
     cursor: pointer;
-    padding: .3em 1em;
-    border-radius: 2em;
+    padding: .3rem 1rem;
+    border-radius: 2rem;
     outline: none;
-    margin: 0 .2em;
+    margin: 0 .2rem;
 
     &:hover {
       background: darken( $color, 20% );

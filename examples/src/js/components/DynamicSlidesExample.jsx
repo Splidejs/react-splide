@@ -46,10 +46,11 @@ export default class DynamicSlidesExample extends React.Component {
 	render() {
 		return (
 			<div className="wrapper">
+				<h2>Dynamic Slides</h2>
+
 				<Splide
 					options={ {
 						rewind : true,
-						width  : 800,
 						perPage: 2,
 						gap    : '1rem',
 					} }

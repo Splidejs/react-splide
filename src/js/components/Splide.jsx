@@ -100,15 +100,30 @@ export default class Splide extends React.Component {
 	}
 
 	/**
+	 * Render the track element.
+	 *
+	 * @return {ReactNode}
+	 */
+	renderTrack() {
+		return (
+			<div className="splide__track">
+				<ul className="splide__list">
+					{ this.props.children }
+				</ul>
+			</div>
+		);
+	}
+
+	/**
 	 * Render the component.
 	 *
 	 * @return {ReactNode} - React component.
 	 */
 	render() {
 		const {
-			children,
 			id,
       className,
+			hasSliderWrapper,
       hasAutoplayProgress,
       hasAutoplayControls,
 			playButtonLabel = 'Play',
@@ -122,11 +137,13 @@ export default class Splide extends React.Component {
 				className={ classNames( 'splide', className ) }
 				ref={ this.splideRef }
 			>
-				<div className="splide__track">
-					<ul className="splide__list">
-						{ children }
-					</ul>
-				</div>
+				{ hasSliderWrapper &&
+					<div className="splide__slider">
+						{ this.renderTrack() }
+					</div>
+				}
+
+				{ ! hasSliderWrapper && this.renderTrack() }
 
 				{ hasAutoplayProgress &&
 				<div className="splide__progress">

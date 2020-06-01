@@ -16,21 +16,24 @@ import { createSlides } from "../utils/slides";
  */
 export default () => {
 	return (
-		<Splide
-			options={ {
-				rewind : true,
-				width  : 800,
-				perPage: 2,
-				perMove: 1,
-				gap    : '1rem',
-			} }
-			onMoved={ ( splide, newIndex ) => { console.log( 'moved', newIndex ) } }
-		>
-			{ createSlides().map( slide => (
-				<SplideSlide key={ slide.src }>
-					<img src={ slide.src } alt={ slide.alt } />
-				</SplideSlide>
-			) ) }
-		</Splide>
+		<div className="wrapper">
+			<h2>Basic Example</h2>
+
+			<Splide
+				options={ {
+					rewind : true,
+					perPage: 2,
+					perMove: 1,
+					gap    : '1rem',
+				} }
+				onMoved={ ( splide, newIndex ) => { console.log( 'moved', newIndex ) } }
+			>
+				{ createSlides().map( slide => (
+					<SplideSlide key={ slide.src }>
+						<img src={ slide.src } alt={ slide.alt } />
+					</SplideSlide>
+				) ) }
+			</Splide>
+		</div>
 	);
 }

@@ -22,12 +22,15 @@ import '../sass/example.scss';
 class App extends React.Component {
 	render() {
 		return (
-			<div id="examples">
+			<main id="examples">
 				<BasicExample />
+				<hr />
 				<AutoplayExample />
+				<hr />
 				<DynamicSlidesExample />
+				<hr />
 				<ThumbnailExample />
-			</div>
+			</main>
 		);
 	}
 }

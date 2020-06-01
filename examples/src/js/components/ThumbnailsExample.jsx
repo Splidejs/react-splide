@@ -54,7 +54,6 @@ export default class ThumbnailsExample extends React.Component {
 	render() {
 		const primaryOptions = {
 			type      : 'loop',
-			width     : 800,
 			perPage   : 2,
 			perMove   : 1,
 			gap       : '1rem',
@@ -64,7 +63,6 @@ export default class ThumbnailsExample extends React.Component {
 		const secondaryOptions = {
 			type        : 'slide',
 			rewind      : true,
-			width       : 800,
 			gap         : '1rem',
 			pagination  : false,
 			fixedWidth  : 110,
@@ -76,7 +74,9 @@ export default class ThumbnailsExample extends React.Component {
 		};
 
 		return (
-			<div>
+			<div className="wrapper">
+				<h2>Thumbnail Slider</h2>
+
 				<Splide options={ primaryOptions } ref={ this.primaryRef }>
 					{ this.renderSlides() }
 				</Splide>

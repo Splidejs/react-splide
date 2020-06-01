@@ -16,22 +16,27 @@ import { createSlides } from "../utils/slides";
  */
 export default () => {
 	return (
-		<Splide
-			options={ {
-				type        : 'loop',
-				width       : 800,
-				gap         : '1rem',
-				autoplay    : true,
-				pauseOnFocus: false,
-			} }
-			hasAutoplayControls
-			hasAutoplayProgress
-		>
-			{ createSlides().map( slide => (
-				<SplideSlide key={ slide.src }>
-					<img src={ slide.src } alt={ slide.alt } />
-				</SplideSlide>
-			) ) }
-		</Splide>
+		<div className="wrapper">
+			<h2>Autoplay</h2>
+
+			<Splide
+				options={ {
+					type        : 'loop',
+					gap         : '1rem',
+					autoplay    : true,
+					pauseOnFocus: false,
+					arrows      : 'slider',
+				} }
+				hasSliderWrapper
+				hasAutoplayControls
+				hasAutoplayProgress
+			>
+				{ createSlides().map( slide => (
+					<SplideSlide key={ slide.src }>
+						<img src={ slide.src } alt={ slide.alt } />
+					</SplideSlide>
+				) ) }
+			</Splide>
+		</div>
 	);
 }
