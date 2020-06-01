@@ -29,11 +29,12 @@ export default () => {
 
 			<Splide
 				options={ {
-					type        : 'loop',
-					gap         : '1rem',
-					autoplay    : true,
-					pauseOnHover: false,
-					arrows      : 'slider',
+					type         : 'loop',
+					gap          : '1rem',
+					autoplay     : true,
+					pauseOnHover : false,
+					resetProgress: false,
+					arrows       : 'slider',
 				} }
 				hasSliderWrapper
 				hasAutoplayControls
