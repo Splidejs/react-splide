@@ -18,21 +18,21 @@ export function noop() {}
 export function classNames( ...args ) {
 	let names = [];
 
-	for ( let className of args ) {
+	args.forEach( className => {
 		if ( ! className ) {
-			continue;
+			return;
 		}
 
 		if ( typeof className === 'string' ) {
 			names.push( className );
 		} else if ( typeof className === 'object' ) {
-			for ( let key in className ) {
+			Object.keys( className ).forEach( key => {
 				if ( className[ key ] ) {
 					names.push( key );
 				}
-			}
+			} );
 		}
-	}
+	} );
 
 	return names.join( ' ' );
 }

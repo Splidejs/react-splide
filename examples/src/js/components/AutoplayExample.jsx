@@ -7,7 +7,7 @@
 
 import React from 'react';
 import { Splide, SplideSlide } from '../../../../src/js';
-import { createSlides } from "../../../../src/js/utils/slides";
+import { createSlides } from "../utils/slides";
 
 /**
  * The function for the basic example.
