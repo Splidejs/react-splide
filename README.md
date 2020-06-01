@@ -96,10 +96,10 @@ export default () => {
 }
 ```
 More examples:
-* [Basic example](https://github.com/Splidejs/react-splide/blob/master/src/js/examples/BasicExample.jsx)
-* [Autoplay](https://github.com/Splidejs/react-splide/blob/master/src/js/examples/AutoplayExample.jsx)
-* [Thumbnails](https://github.com/Splidejs/react-splide/blob/master/src/js/examples/ThumbnailsExample.jsx)
-* [Dynamic slides](https://github.com/Splidejs/react-splide/blob/master/src/js/examples/DynamicSlidesExample.jsx)
+* [Basic example](https://github.com/Splidejs/react-splide/blob/master/examples/src/js/components/BasicExample.jsx)
+* [Autoplay](https://github.com/Splidejs/react-splide/blob/master/examples/src/js/components/AutoplayExample.jsx)
+* [Thumbnails](https://github.com/Splidejs/react-splide/blob/master/examples/src/js/components/ThumbnailsExample.jsx)
+* [Dynamic slides](https://github.com/Splidejs/react-splide/blob/master/examples/src/js/components/DynamicSlidesExample.jsx)
 
 ## License
 React Splide and Splide are released under the MIT license.  
