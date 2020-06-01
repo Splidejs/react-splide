@@ -32,7 +32,7 @@ export default () => {
 					type        : 'loop',
 					gap         : '1rem',
 					autoplay    : true,
-					pauseOnFocus: false,
+					pauseOnHover: false,
 					arrows      : 'slider',
 				} }
 				hasSliderWrapper
