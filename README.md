@@ -10,7 +10,8 @@
 # React Splide
 **React Splide is the [Splide](https://github.com/Splidejs/splide) component for React.**
 * [Document](https://splidejs.com/integration-react-splide/)
-* [Splide](https://github.com/Splidejs/splide)
+* [Splide Demos](https://splidejs.com/)
+* [Working Examples](https://splidejs.github.io/react-splide/)
 
 ## Installation
 Get the latest version by NPM:

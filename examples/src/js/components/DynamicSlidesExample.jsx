@@ -46,7 +46,15 @@ export default class DynamicSlidesExample extends React.Component {
 	render() {
 		return (
 			<div className="wrapper">
+
 				<h2>Dynamic Slides</h2>
+				<a
+					href="https://github.com/Splidejs/react-splide/blob/master/examples/src/js/components/DynamicSlidesExample.jsx"
+					target="_blank"
+					rel="noopener"
+				>
+					View Code
+				</a>
 
 				<Splide
 					options={ {

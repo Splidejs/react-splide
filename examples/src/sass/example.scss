@@ -18,6 +18,11 @@ h2 {
   font-size: 1.6rem;
 }
 
+a {
+  margin-bottom: 1rem;
+  color: $color;
+}
+
 hr {
   border: 0;
   border-bottom: 3px solid #eee;
@@ -50,7 +55,7 @@ hr {
 }
 
 .splide {
-  margin-bottom: 3rem;
+  margin: 1rem 0 3rem;
 
   &--nav {
     padding: 0;

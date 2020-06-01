@@ -19,6 +19,14 @@ export default () => {
 		<div className="wrapper">
 			<h2>Autoplay</h2>
 
+			<a
+				href="https://github.com/Splidejs/react-splide/blob/master/examples/src/js/components/AutoplayExample.jsx"
+				target="_blank"
+				rel="noopener"
+			>
+				View Code
+			</a>
+
 			<Splide
 				options={ {
 					type        : 'loop',

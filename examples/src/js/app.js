@@ -35,6 +35,6 @@ class App extends React.Component {
 	}
 }
 
-document.addEventListener( 'DOMContentLoaded', () => {
+window.addEventListener( 'load', () => {
 	render( <App/>, document.getElementById( 'app' ) );
 } );

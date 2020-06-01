@@ -77,6 +77,14 @@ export default class ThumbnailsExample extends React.Component {
 			<div className="wrapper">
 				<h2>Thumbnail Slider</h2>
 
+				<a
+					href="https://github.com/Splidejs/react-splide/blob/master/examples/src/js/components/ThumbnailsExample.jsx"
+					target="_blank"
+					rel="noopener"
+				>
+					View Code
+				</a>
+
 				<Splide options={ primaryOptions } ref={ this.primaryRef }>
 					{ this.renderSlides() }
 				</Splide>

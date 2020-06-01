@@ -19,6 +19,14 @@ export default () => {
 		<div className="wrapper">
 			<h2>Basic Example</h2>
 
+			<a
+				href="https://github.com/Splidejs/react-splide/blob/master/examples/src/js/components/BasicExample.jsx"
+				target="_blank"
+				rel="noopener"
+			>
+				View Code
+			</a>
+
 			<Splide
 				options={ {
 					rewind : true,

@@ -50,7 +50,6 @@
   "scripts": {
     "build": "webpack --mode production",
     "deploy": "gh-pages -d examples/dist",
-    "transpile": "babel src/js -d dist/js --copy-files",
-    "publish": "npm publish"
+    "transpile": "babel src/js -d dist/js --copy-files"
   }
 }
