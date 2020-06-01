@@ -20,8 +20,9 @@ export default class Splide extends React.Component {
 	 * @param {Object}   props                     - Props.
 	 * @param {string}   props.id                  - Optional. Id attribute for the root element.
 	 * @param {string}   props.className           - Optional. Additional class name for the root element.
-	 * @param {boolean}  props.hasAutoplayProgress - Optional. Whether to render progress bar for autoplay or not.
-	 * @param {boolean}  props.hasAutoplayControls - Optional. Whether to render play/pause button for autoplay or not.
+	 * @param {boolean}  props.hasSliderWrapper    - Optional. Whether to wrap a track by a slider element.
+	 * @param {boolean}  props.hasAutoplayProgress - Optional. Whether to render progress bar for autoplay.
+	 * @param {boolean}  props.hasAutoplayControls - Optional. Whether to render play/pause button for autoplay.
 	 * @param {string}   props.playButtonLabel     - Optional. The label for the play button.
 	 * @param {string}   props.pauseButtonLabel    - Optional. The label for the pause button.
 	 * @param {function} props.renderControls      - Optional. A function to render custom controls.
