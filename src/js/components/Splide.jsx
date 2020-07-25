@@ -55,7 +55,7 @@ export default class Splide extends React.Component {
 	 * Remount the splide when the component is updated.
 	 */
 	componentDidUpdate() {
-		this.remount();
+		this.splide.refresh();
 	}
 
 	/**
