@@ -38,8 +38,8 @@ export default class Splide extends React.Component {
 	componentDidMount() {
 		const { options = {}, Extensions = {}, Transition = null } = this.props;
 		this.splide = new SplideSlider( this.splideRef.current, options );
-		this.splide.mount( Extensions, Transition );
 		this.bind();
+		this.splide.mount( Extensions, Transition );
 	}
 
 	/**
