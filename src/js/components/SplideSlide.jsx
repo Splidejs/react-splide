@@ -13,9 +13,9 @@ import { classNames } from "../utils";
  *
  * @param {Object} props - Props.
  */
-export default ( { children, className } ) => {
+export default ( { children, className, ...props } ) => {
 	return (
-		<li className={ classNames( 'splide__slide', className ) }>
+		<li className={ classNames( 'splide__slide', className ) } {...props}>
 			{ children }
 		</li>
 	);
