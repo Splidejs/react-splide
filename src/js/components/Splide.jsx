@@ -78,6 +78,18 @@ export default class Splide extends React.Component {
 	}
 
 	/**
+	 * Go to the slide specified by the given control.
+	 *
+	 * @param {string|number} control - A control pattern.
+	 * @param {boolean}       wait    - Optional. Whether to wait for transition.
+	 */
+	go(control, wait) {
+		if ( this.splide ) {
+			this.splide.go(control, wait)
+		}
+	}
+
+	/**
 	 * Sync to the given splide.
 	 *
 	 * @param {Splide} splide - Splide instance.
