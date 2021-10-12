@@ -2,8 +2,7 @@
   "name": "react-splide-examples",
   "version": "1.0.0",
   "private": true,
-  "dependencies": {
-    "@splidejs/react-splide": "file:..",
+  "devDependencies": {
     "@types/react": "^17.0.27",
     "@types/react-dom": "^17.0.9",
     "chokidar": "^3.5.2",
@@ -15,5 +14,8 @@
   },
   "scripts": {
     "build:example": "node ./scripts/build-example.js"
+  },
+  "dependencies": {
+    "@splidejs/react-splide": "^0.5.0"
   }
 }

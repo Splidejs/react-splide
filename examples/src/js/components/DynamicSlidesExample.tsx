@@ -7,7 +7,7 @@ type State = {
   slides: ReturnType<typeof generateSlides>;
 };
 
-export class DynamicSlidesExample extends React.Component<null, State> {
+export class DynamicSlidesExample extends React.Component<{}, State> {
   /**
    * The current count.
    */
