@@ -1,10 +1,12 @@
 {
   "name": "@splidejs/react-splide",
-  "version": "0.4.4",
-  "description": "The Splide component for React.",
+  "version": "0.5.0",
+  "description": "The React component for Splide.",
   "author": "Naotoshi Fujita",
   "license": "MIT",
-  "main": "dist/js/index.js",
+  "main": "dist/js/react-splide.cjs.js",
+  "module": "dist/js/react-splide.esm.js",
+  "types": "dist/types/index.d.ts",
   "keywords": [
     "splide",
     "slider",
@@ -22,34 +24,27 @@
   "bugs": {
     "url": "https://github.com/Splidejs/react-splide/issues"
   },
-  "peerDependencies": {
-    "react": "16.13.1",
-    "react-dom": "16.13.1"
-  },
   "dependencies": {
-    "@splidejs/splide": "^2.4.13"
+    "@splidejs/splide": "^3.1.5"
   },
   "devDependencies": {
-    "@babel/cli": "^7.10.5",
-    "@babel/core": "^7.11.4",
-    "@babel/preset-env": "^7.11.0",
-    "@babel/preset-react": "^7.10.4",
-    "babel-loader": "^8.1.0",
-    "css-loader": "^4.2.1",
-    "gh-pages": "^3.1.0",
-    "html-webpack-plugin": "^4.3.0",
-    "node-sass": "^4.14.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "sass-loader": "^9.0.3",
-    "serialize-javascript": "^4.0.0",
-    "style-loader": "^1.2.1",
-    "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "@types/react": "^17.0.27",
+    "@types/react-dom": "^17.0.9",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/parser": "^4.33.0",
+    "chokidar": "^3.5.2",
+    "esbuild": "^0.13.4",
+    "eslint": "^7.32.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.3"
   },
   "scripts": {
-    "build": "webpack --mode production",
-    "deploy": "gh-pages -d examples/dist",
-    "transpile": "babel src/js -d dist/js --copy-files"
+    "develop": "node ./scripts/develop.js",
+    "build:module": "node ./scripts/build-module.js",
+    "build:types": "node scripts/clean.js && tsc --emitDeclarationOnly",
+    "build:all": "npm run build:module && npm run build:types",
+    "eslint": "eslint src"
   }
 }

@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+		"allowJs": true,
+		"skipLibCheck": true,
+		"esModuleInterop": true,
+		"strict": true,
+		"module": "esnext",
+		"moduleResolution": "node",
+    "mapRoot": "./",
+    "declarationDir": "./dist/types",
+    "declaration"   : true,
+    "declarationMap": true,
+    "lib": [
+      "dom",
+      "es6"
+    ],
+		"jsx": "react"
+  },
+  "include": [
+    "src/js/**/*.ts",
+  ],
+  "exclude": [
+    "node_modules",
+    "src/js/**/*.test.ts"
+  ]
+}
