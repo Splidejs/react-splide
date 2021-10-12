@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://splidejs.com" target="_blank">
-        <img width="80" src="images/logo.png">
+        <img width="80" src="images/logo.svg">
     </a>
     <a href="https://reactjs.org/" target="_blank">
         <img width="80" src="images/react-logo.png">
