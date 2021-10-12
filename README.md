@@ -3,7 +3,7 @@
         <img width="80" src="images/logo.svg">
     </a>
     <a href="https://reactjs.org/" target="_blank">
-        <img width="80" src="images/react-logo.png">
+        <img width="80" src="images/react-logo.svg">
     </a>
 </p>
 
