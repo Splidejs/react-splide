@@ -2326,6 +2326,8 @@ var import_react = __toModule(require("react"));
 
 // src/js/constants/events.ts
 var EVENTS = [
+  [EVENT_MOUNTED, "onMounted"],
+  [EVENT_READY, "onReady"],
   [EVENT_MOVE, "onMove"],
   [EVENT_MOVED, "onMoved"],
   [EVENT_CLICK, "onClick"],
@@ -2343,8 +2345,8 @@ var EVENTS = [
   [EVENT_SCROLL, "onScroll"],
   [EVENT_SCROLLED, "onScrolled"],
   [EVENT_DESTROY, "onDestroy"],
-  [EVENT_ARROWS_MOUNTED, "onMounted"],
-  [EVENT_ARROWS_UPDATED, "onUpdated"],
+  [EVENT_ARROWS_MOUNTED, "onArrowsMounted"],
+  [EVENT_ARROWS_UPDATED, "onArrowsUpdated"],
   [EVENT_PAGINATION_MOUNTED, "onPaginationMounted"],
   [EVENT_PAGINATION_UPDATED, "onPaginationUpdated"],
   [EVENT_NAVIGATION_MOUNTED, "onNavigationMounted"],

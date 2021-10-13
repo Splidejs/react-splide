@@ -13,11 +13,13 @@ import {
   EVENT_HIDDEN,
   EVENT_INACTIVE,
   EVENT_LAZYLOAD_LOADED,
+  EVENT_MOUNTED,
   EVENT_MOVE,
   EVENT_MOVED,
   EVENT_NAVIGATION_MOUNTED,
   EVENT_PAGINATION_MOUNTED,
   EVENT_PAGINATION_UPDATED,
+  EVENT_READY,
   EVENT_REFRESH,
   EVENT_RESIZE,
   EVENT_RESIZED,
@@ -25,12 +27,14 @@ import {
   EVENT_SCROLLED,
   EVENT_UPDATED,
   EVENT_VISIBLE,
+  EventMap,
 } from '@splidejs/splide';
-import { EventMap } from '@splidejs/splide';
 import { SplideEventHandlerMap } from '../types';
 
 
 export const EVENTS: Array<[ keyof EventMap, keyof SplideEventHandlerMap ]> = [
+  [ EVENT_MOUNTED, 'onMounted' ],
+  [ EVENT_READY, 'onReady' ],
   [ EVENT_MOVE, 'onMove' ],
   [ EVENT_MOVED, 'onMoved' ],
   [ EVENT_CLICK, 'onClick' ],
@@ -48,8 +52,8 @@ export const EVENTS: Array<[ keyof EventMap, keyof SplideEventHandlerMap ]> = [
   [ EVENT_SCROLL, 'onScroll' ],
   [ EVENT_SCROLLED, 'onScrolled' ],
   [ EVENT_DESTROY, 'onDestroy' ],
-  [ EVENT_ARROWS_MOUNTED, 'onMounted' ],
-  [ EVENT_ARROWS_UPDATED, 'onUpdated' ],
+  [ EVENT_ARROWS_MOUNTED, 'onArrowsMounted' ],
+  [ EVENT_ARROWS_UPDATED, 'onArrowsUpdated' ],
   [ EVENT_PAGINATION_MOUNTED, 'onPaginationMounted' ],
   [ EVENT_PAGINATION_UPDATED, 'onPaginationUpdated' ],
   [ EVENT_NAVIGATION_MOUNTED, 'onNavigationMounted' ],
