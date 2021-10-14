@@ -16,6 +16,6 @@
     "build:example": "node ./scripts/build-example.js"
   },
   "dependencies": {
-    "@splidejs/react-splide": "^0.5.0"
+    "@splidejs/react-splide": "file:.."
   }
 }

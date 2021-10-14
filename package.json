@@ -1,6 +1,6 @@
 {
   "name": "@splidejs/react-splide",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "The React component for Splide.",
   "author": "Naotoshi Fujita",
   "license": "MIT",
@@ -25,7 +25,7 @@
     "url": "https://github.com/Splidejs/react-splide/issues"
   },
   "dependencies": {
-    "@splidejs/splide": "^3.1.5"
+    "@splidejs/splide": "^3.1.6"
   },
   "devDependencies": {
     "@types/react": "^17.0.27",

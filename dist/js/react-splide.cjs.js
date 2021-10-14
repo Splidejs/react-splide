@@ -2295,7 +2295,7 @@ var _Splide = class {
       });
       event.emit(EVENT_DESTROY);
       event.destroy();
-      empty(this.splides);
+      completely && empty(this.splides);
       state.set(DESTROYED);
     }
     return this;
@@ -2398,13 +2398,17 @@ var Splide2 = class extends import_react.default.Component {
   }
   sync(splide) {
     if (this.splide) {
-      const Sync2 = this.splide.Components.Sync;
-      if (Sync2 && Sync2.mount && Sync2.destroy) {
-        this.splide.sync(splide);
-        Sync2.mount();
-        Sync2.destroy();
-      }
+      this.splide.sync(splide);
+      this.remount(splide);
+      this.remount(this.splide);
     }
+  }
+  go(control) {
+    this.splide?.go(control);
+  }
+  remount(splide) {
+    splide.destroy(false);
+    splide.mount();
   }
   renderTrack() {
     return /* @__PURE__ */ import_react.default.createElement("div", {
@@ -2453,7 +2457,7 @@ var SplideSlide = ({ className, children: children2 }) => {
 };
 /*!
  * Splide.js
- * Version  : 3.1.5
+ * Version  : 3.1.6
  * License  : MIT
  * Copyright: 2021 Naotoshi Fujita
  */

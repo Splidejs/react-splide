@@ -86,14 +86,31 @@ export class Splide extends React.Component<SplideProps> {
    */
   sync( splide: SplideCore ): void {
     if ( this.splide ) {
-      const Sync = this.splide.Components.Sync;
-
-      if ( Sync && Sync.mount && Sync.destroy ) {
-        this.splide.sync( splide );
-        Sync.mount();
-        Sync.destroy();
-      }
+      this.splide.sync( splide );
+      this.remount( splide );
+      this.remount( this.splide );
     }
+  }
+
+  /**
+   * Moves the slider by the specified control pattern.
+   *
+   * @see Splide#go()
+   *
+   * @param control - A control pattern.
+   */
+  go( control: number | string ): void {
+    this.splide?.go( control );
+  }
+
+  /**
+   * Remounts the provided splide instance.
+   *
+   * @param splide - A splide instance to remount.
+   */
+  remount( splide: SplideCore ): void {
+    splide.destroy( false );
+    splide.mount();
   }
 
   /**
