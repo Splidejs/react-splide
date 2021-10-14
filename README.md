@@ -9,7 +9,8 @@
   <h1>React Splide</h1>
 
   <p>
-    React Splide is the React component for [Splide](https://github.com/Splidejs/splide) slider/carousel.
+    React Splide is the React component for the
+    <a href="https://github.com/Splidejs/splide">Splide</a> slider/carousel.
   </p>
 
   <p>
