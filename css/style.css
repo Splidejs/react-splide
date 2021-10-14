@@ -1,0 +1,29 @@
+body {
+  font-family : 'Poppins', sans-serif;
+}
+
+button {
+  font-family : inherit;
+}
+
+.examples {
+  padding : 2rem 0;
+}
+
+.wrapper {
+  max-width : 600px;
+  margin    : 2rem auto;
+}
+
+.splide__slide {
+  background : #eee;
+}
+
+.splide__slide img {
+  width  : 100%;
+  height : auto;
+}
+
+.splide--nav {
+  margin-top : 1rem;
+}
