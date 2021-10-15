@@ -2420,9 +2420,10 @@ var Splide2 = class extends React.Component {
 
 // src/js/components/SplideSlide/SplideSlide.tsx
 import React2 from "react";
-var SplideSlide = ({ className, children: children2 }) => {
+var SplideSlide = ({ children: children2, className, ...props }) => {
   return /* @__PURE__ */ React2.createElement("li", {
-    className: classNames("splide__slide", className)
+    className: classNames("splide__slide", className),
+    ...props
   }, children2);
 };
 export {

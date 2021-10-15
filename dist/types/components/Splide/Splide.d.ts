@@ -46,6 +46,20 @@ export declare class Splide extends React.Component<SplideProps> {
      */
     sync(splide: SplideCore): void;
     /**
+     * Moves the slider by the specified control pattern.
+     *
+     * @see Splide#go()
+     *
+     * @param control - A control pattern.
+     */
+    go(control: number | string): void;
+    /**
+     * Remounts the provided splide instance.
+     *
+     * @param splide - A splide instance to remount.
+     */
+    remount(splide: SplideCore): void;
+    /**
      * Render the track element.
      *
      * @return A track element node.

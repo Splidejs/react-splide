@@ -2450,9 +2450,10 @@ var Splide2 = class extends import_react.default.Component {
 
 // src/js/components/SplideSlide/SplideSlide.tsx
 var import_react2 = __toModule(require("react"));
-var SplideSlide = ({ className, children: children2 }) => {
+var SplideSlide = ({ children: children2, className, ...props }) => {
   return /* @__PURE__ */ import_react2.default.createElement("li", {
-    className: classNames("splide__slide", className)
+    className: classNames("splide__slide", className),
+    ...props
   }, children2);
 };
 /*!
