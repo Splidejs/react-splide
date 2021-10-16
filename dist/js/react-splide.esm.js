@@ -2428,6 +2428,16 @@ var Splide2 = class extends React.Component {
       this.slides = newSlides;
     }
   }
+  sync(splide) {
+    if (this.splide) {
+      this.splide.sync(splide);
+      this.remount(splide);
+      this.remount(this.splide);
+    }
+  }
+  go(control) {
+    this.splide?.go(control);
+  }
   getSlides() {
     if (this.splide) {
       const children2 = this.splide.Components.Elements?.list.children;
@@ -2444,16 +2454,6 @@ var Splide2 = class extends React.Component {
         });
       }
     });
-  }
-  sync(splide) {
-    if (this.splide) {
-      this.splide.sync(splide);
-      this.remount(splide);
-      this.remount(this.splide);
-    }
-  }
-  go(control) {
-    this.splide?.go(control);
   }
   remount(splide) {
     splide.destroy(false);

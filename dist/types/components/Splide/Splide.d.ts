@@ -36,18 +36,6 @@ export declare class Splide extends React.Component<SplideProps> {
      */
     componentDidUpdate(): void;
     /**
-     * Returns an array with slide elements.
-     *
-     * @return An array with slide elements.
-     */
-    protected getSlides(): HTMLElement[];
-    /**
-     * Binds event handlers to the splide instance.
-     *
-     * @param splide - A splide instance.
-     */
-    bind(splide: SplideCore): void;
-    /**
      * Adds a splide instance to sync with.
      *
      * @param splide - A Splide instance.
@@ -62,17 +50,29 @@ export declare class Splide extends React.Component<SplideProps> {
      */
     go(control: number | string): void;
     /**
+     * Returns an array with slide elements.
+     *
+     * @return An array with slide elements.
+     */
+    protected getSlides(): HTMLElement[];
+    /**
+     * Binds event handlers to the splide instance.
+     *
+     * @param splide - A splide instance.
+     */
+    protected bind(splide: SplideCore): void;
+    /**
      * Remounts the provided splide instance.
      *
      * @param splide - A splide instance to remount.
      */
-    remount(splide: SplideCore): void;
+    protected remount(splide: SplideCore): void;
     /**
      * Render the track element.
      *
      * @return A track element node.
      */
-    renderTrack(): ReactNode;
+    protected renderTrack(): ReactNode;
     /**
      * Render the splide slider elements.
      *
