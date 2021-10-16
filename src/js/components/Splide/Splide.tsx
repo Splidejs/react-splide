@@ -85,37 +85,6 @@ export class Splide extends React.Component<SplideProps> {
   }
 
   /**
-   * Returns an array with slide elements.
-   *
-   * @return An array with slide elements.
-   */
-  protected getSlides(): HTMLElement[] {
-    if ( this.splide ) {
-      const children = this.splide.Components.Elements?.list.children;
-      return children && Array.prototype.slice.call( children ) || [];
-    }
-
-    return [];
-  }
-
-  /**
-   * Binds event handlers to the splide instance.
-   *
-   * @param splide - A splide instance.
-   */
-  bind( splide: SplideCore ): void {
-    EVENTS.forEach( ( [ event, name ] ) => {
-      const handler = this.props[ name ];
-
-      if ( typeof handler === 'function' ) {
-        splide.on( event, ( ...args: any[] ) => {
-          handler( splide, ...args );
-        } );
-      }
-    } );
-  }
-
-  /**
    * Adds a splide instance to sync with.
    *
    * @param splide - A Splide instance.
@@ -140,11 +109,42 @@ export class Splide extends React.Component<SplideProps> {
   }
 
   /**
+   * Returns an array with slide elements.
+   *
+   * @return An array with slide elements.
+   */
+  protected getSlides(): HTMLElement[] {
+    if ( this.splide ) {
+      const children = this.splide.Components.Elements?.list.children;
+      return children && Array.prototype.slice.call( children ) || [];
+    }
+
+    return [];
+  }
+
+  /**
+   * Binds event handlers to the splide instance.
+   *
+   * @param splide - A splide instance.
+   */
+  protected bind( splide: SplideCore ): void {
+    EVENTS.forEach( ( [ event, name ] ) => {
+      const handler = this.props[ name ];
+
+      if ( typeof handler === 'function' ) {
+        splide.on( event, ( ...args: any[] ) => {
+          handler( splide, ...args );
+        } );
+      }
+    } );
+  }
+
+  /**
    * Remounts the provided splide instance.
    *
    * @param splide - A splide instance to remount.
    */
-  remount( splide: SplideCore ): void {
+  protected remount( splide: SplideCore ): void {
     splide.destroy( false );
     splide.mount();
   }
@@ -154,7 +154,7 @@ export class Splide extends React.Component<SplideProps> {
    *
    * @return A track element node.
    */
-  renderTrack(): ReactNode {
+  protected renderTrack(): ReactNode {
     return (
       <div className="splide__track">
         <ul className="splide__list">
