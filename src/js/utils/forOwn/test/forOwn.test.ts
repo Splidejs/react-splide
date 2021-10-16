@@ -1,4 +1,4 @@
-import { forOwn } from './forOwn';
+import { forOwn } from '../forOwn';
 
 
 describe( 'forOwn', () => {
@@ -20,9 +20,9 @@ describe( 'forOwn', () => {
       b = 2;
     }
 
-    Constructor.prototype[ 'c' ] = 3;
+    ( Constructor as any ).prototype[ 'c' ] = 3;
 
-    const object = {};
+    const object: any = {};
 
     forOwn( new Constructor(), ( value, key ) => {
       object[ key ] = value;
