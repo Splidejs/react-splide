@@ -2331,11 +2331,68 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
+// src/js/utils/isObject/isObject.ts
+function isObject2(subject) {
+  return subject !== null && typeof subject === "object";
+}
+
+// src/js/utils/isEqualDeep/isEqualDeep.ts
+function isEqualDeep(subject1, subject2) {
+  if (Array.isArray(subject1) && Array.isArray(subject2)) {
+    return subject1.length === subject2.length && !subject1.some((elm, index) => !isEqualDeep(elm, subject2[index]));
+  }
+  if (isObject2(subject1) && isObject2(subject2)) {
+    const keys1 = Object.keys(subject1);
+    const keys2 = Object.keys(subject2);
+    return keys1.length === keys2.length && !keys1.some((key) => {
+      return !Object.prototype.hasOwnProperty.call(subject2, key) || !isEqualDeep(subject1[key], subject2[key]);
+    });
+  }
+  return subject1 === subject2;
+}
+
+// src/js/utils/isEqualShallow/isEqualShallow.ts
+function isEqualShallow(array1, array2) {
+  return array1.length === array2.length && !array1.some((elm, index) => elm !== array2[index]);
+}
+
+// src/js/utils/forOwn/forOwn.ts
+function forOwn2(object, iteratee) {
+  if (object) {
+    const keys = Object.keys(object);
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i];
+      if (key !== "__proto__") {
+        if (iteratee(object[key], key) === false) {
+          break;
+        }
+      }
+    }
+  }
+  return object;
+}
+
+// src/js/utils/merge/merge.ts
+function merge2(object, source) {
+  const merged = object;
+  forOwn2(source, (value, key) => {
+    if (Array.isArray(value)) {
+      merged[key] = value.slice();
+    } else if (isObject2(value)) {
+      merged[key] = merge2(isObject2(merged[key]) ? merged[key] : {}, value);
+    } else {
+      merged[key] = value;
+    }
+  });
+  return merged;
+}
+
 // src/js/components/Splide/Splide.tsx
 var Splide2 = class extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super(...arguments);
     this.splideRef = React.createRef();
+    this.slides = [];
   }
   componentDidMount() {
     const { options, Extensions, Transition } = this.props;
@@ -2344,17 +2401,39 @@ var Splide2 = class extends React.Component {
       this.splide = new Splide(current, options);
       this.bind(this.splide);
       this.splide.mount(Extensions, Transition);
+      this.options = merge2({}, options || {});
+      this.slides = this.getSlides();
     }
   }
   componentWillUnmount() {
     if (this.splide) {
       this.splide.destroy();
+      this.splide = void 0;
     }
+    this.options = void 0;
+    this.slides.length = 0;
   }
   componentDidUpdate() {
-    if (this.splide) {
-      this.splide.refresh();
+    if (!this.splide) {
+      return;
     }
+    const { options } = this.props;
+    if (options && !isEqualDeep(this.options, options)) {
+      this.splide.options = options;
+      this.options = merge2({}, options);
+    }
+    const newSlides = this.getSlides();
+    if (!isEqualShallow(this.slides, newSlides)) {
+      this.splide.refresh();
+      this.slides = newSlides;
+    }
+  }
+  getSlides() {
+    if (this.splide) {
+      const children2 = this.splide.Components.Elements?.list.children;
+      return children2 && Array.prototype.slice.call(children2) || [];
+    }
+    return [];
   }
   bind(splide) {
     EVENTS.forEach(([event, name]) => {

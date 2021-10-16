@@ -1,8 +1,8 @@
-import { Splide as SplideCore } from '@splidejs/splide';
+import { Options, Splide as SplideCore } from '@splidejs/splide';
 import React, { ReactNode } from 'react';
 import { EVENTS } from '../../constants/events';
 import { SplideProps } from '../../types';
-import { classNames } from '../../utils';
+import { classNames, isEqualDeep, isEqualShallow, merge } from '../../utils';
 
 
 /**
@@ -22,13 +22,14 @@ export class Splide extends React.Component<SplideProps> {
   splide: SplideCore | undefined;
 
   /**
-   * The SplideComponent constructor.
-   *
-   * @param props = Props.
+   * Holds current options to compare with new ones.
    */
-  constructor( props: SplideProps ) {
-    super( props );
-  }
+  private options: Options | undefined;
+
+  /**
+   * Holds the latest slides to compare with new ones.
+   */
+  private slides: HTMLElement[] = [];
 
   /**
    * Called when the component is mounted.
@@ -41,6 +42,9 @@ export class Splide extends React.Component<SplideProps> {
       this.splide = new SplideCore( current, options );
       this.bind( this.splide );
       this.splide.mount( Extensions, Transition );
+
+      this.options = merge( {}, options || {} );
+      this.slides  = this.getSlides();
     }
   }
 
@@ -50,16 +54,48 @@ export class Splide extends React.Component<SplideProps> {
   componentWillUnmount(): void {
     if ( this.splide ) {
       this.splide.destroy();
+      this.splide = undefined;
+    }
+
+    this.options = undefined;
+    this.slides.length = 0;
+  }
+
+  /**
+   * Updates and/or refreshes the splide when the component is updated.
+   */
+  componentDidUpdate(): void {
+    if ( ! this.splide ) {
+      return;
+    }
+
+    const { options } = this.props;
+
+    if ( options && ! isEqualDeep( this.options, options ) ) {
+      this.splide.options = options;
+      this.options = merge( {}, options );
+    }
+
+    const newSlides = this.getSlides();
+
+    if ( ! isEqualShallow( this.slides, newSlides ) ) {
+      this.splide.refresh();
+      this.slides = newSlides;
     }
   }
 
   /**
-   * Refreshes the splide when the component is updated.
+   * Returns an array with slide elements.
+   *
+   * @return An array with slide elements.
    */
-  componentDidUpdate(): void {
+  protected getSlides(): HTMLElement[] {
     if ( this.splide ) {
-      this.splide.refresh();
+      const children = this.splide.Components.Elements?.list.children;
+      return children && Array.prototype.slice.call( children ) || [];
     }
+
+    return [];
   }
 
   /**
@@ -152,9 +188,7 @@ export class Splide extends React.Component<SplideProps> {
         ref={ this.splideRef }
       >
         { hasSliderWrapper
-          ? <div className="splide__slider">
-            { this.renderTrack() }
-          </div>
+          ? <div className="splide__slider">{ this.renderTrack() }</div>
           : this.renderTrack()
         }
 

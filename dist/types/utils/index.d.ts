@@ -1,2 +1,7 @@
 export { classNames } from './classNames/classNames';
+export { isEqualDeep } from './isEqualDeep/isEqualDeep';
+export { isEqualShallow } from './isEqualShallow/isEqualShallow';
+export { isObject } from './isObject/isObject';
+export { merge } from './merge/merge';
+export { forOwn } from './forOwn/forOwn';
 //# sourceMappingURL=../../../src/js/utils/index.d.ts.map

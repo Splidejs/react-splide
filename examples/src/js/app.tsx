@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { AutoplayExample } from './components/AutoplayExample';
 import { BasicExample } from './components/BasicExample';
 import { DynamicSlidesExample } from './components/DynamicSlidesExample';
+import { ReactivityExample } from './components/ReactivityExample';
 import { ThumbnailsExample } from './components/ThumbnailsExample';
 
 
@@ -14,6 +15,7 @@ const App: React.VoidFunctionComponent = () => {
     <div className="examples">
       <BasicExample/>
       <AutoplayExample/>
+      <ReactivityExample/>
       <DynamicSlidesExample/>
       <ThumbnailsExample/>
     </div>

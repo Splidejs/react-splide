@@ -16,11 +16,13 @@ export declare class Splide extends React.Component<SplideProps> {
      */
     splide: SplideCore | undefined;
     /**
-     * The SplideComponent constructor.
-     *
-     * @param props = Props.
+     * Holds current options to compare with new ones.
      */
-    constructor(props: SplideProps);
+    private options;
+    /**
+     * Holds the latest slides to compare with new ones.
+     */
+    private slides;
     /**
      * Called when the component is mounted.
      */
@@ -30,9 +32,15 @@ export declare class Splide extends React.Component<SplideProps> {
      */
     componentWillUnmount(): void;
     /**
-     * Refreshes the splide when the component is updated.
+     * Updates and/or refreshes the splide when the component is updated.
      */
     componentDidUpdate(): void;
+    /**
+     * Returns an array with slide elements.
+     *
+     * @return An array with slide elements.
+     */
+    protected getSlides(): HTMLElement[];
     /**
      * Binds event handlers to the splide instance.
      *

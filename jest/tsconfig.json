@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+		"allowJs": true,
+		"skipLibCheck": true,
+		"esModuleInterop": true,
+		"strict": false,
+		"module": "esnext",
+		"moduleResolution": "node",
+    "lib": [
+      "dom",
+      "es6"
+    ],
+		"jsx": "react"
+  },
+  "include": [
+    "src/js/**/*.ts",
+  ],
+  "exclude": [
+    "node_modules",
+    "src/js/**/*.test.ts"
+  ]
+}

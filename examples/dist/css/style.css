@@ -1,29 +1,45 @@
 body {
-  font-family : 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
-button {
-  font-family : inherit;
+button, input {
+  font-family: inherit;
+}
+
+label {
+  margin-right: 1rem;
+}
+
+input {
+  font-family: inherit;
+  height: 1.5rem;
+  width: 4rem;
+  margin-right: 3px;
+}
+
+label span {
+  margin-right: 4px;
 }
 
 .examples {
-  padding : 2rem 0;
+  padding: 2rem 0;
 }
 
 .wrapper {
-  max-width : 600px;
-  margin    : 2rem auto;
+  max-width: 600px;
+  margin: 4rem auto;
 }
 
 .splide__slide {
-  background : #eee;
+  background: #eee;
 }
 
 .splide__slide img {
-  width  : 100%;
-  height : auto;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .splide--nav {
-  margin-top : 1rem;
+  margin-top: 1rem;
 }
