@@ -1,5 +1,6 @@
 node_modules/
 images/
 examples/
-
+.idea/
+.github/
 .editorconfig
