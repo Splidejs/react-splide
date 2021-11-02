@@ -822,7 +822,7 @@ function Slide$1(Splide22, index, slideIndex, slide) {
   }
   function isWithin(from, distance) {
     let diff = abs(from - index);
-    if (!Splide22.is(SLIDE) && !isClone) {
+    if (!isClone && (options.rewind || Splide22.is(LOOP))) {
       diff = min(diff, Splide22.length - diff);
     }
     return diff <= distance;
@@ -980,7 +980,7 @@ function Layout(Splide22, Components2, options) {
   }
   function cssPadding(right) {
     const { padding } = options;
-    const prop = resolve(right ? "right" : "left", true);
+    const prop = resolve(right ? "right" : "left");
     return padding && unit(padding[prop] || (isObject(padding) ? 0 : padding)) || "0px";
   }
   function cssTrackHeight() {
@@ -1029,7 +1029,7 @@ function Layout(Splide22, Components2, options) {
     return Slide2 && parseFloat(style(Slide2.slide, resolve("marginRight"))) || 0;
   }
   function getPadding(right) {
-    return parseFloat(style(track, resolve(`padding${right ? "Right" : "Left"}`, true))) || 0;
+    return parseFloat(style(track, resolve(`padding${right ? "Right" : "Left"}`))) || 0;
   }
   return {
     mount,
@@ -1122,7 +1122,7 @@ function Move(Splide22, Components2, options) {
     removeAttribute(list, "style");
   }
   function reposition() {
-    if (!Components2.Drag.isDragging()) {
+    if (!isBusy() && !Components2.Drag.isDragging()) {
       Components2.Scroll.cancel();
       jump(Splide22.index);
       emit(EVENT_REPOSITIONED);
@@ -1703,8 +1703,10 @@ function Drag(Splide22, Components2, options) {
   }
   function onPointerDown(e) {
     if (!disabled) {
+      const { noDrag } = options;
       const isTouch = isTouchEvent(e);
-      if (isTouch || !e.button) {
+      const isDraggable = !noDrag || isHTMLElement(e.target) && !matches(e.target, noDrag);
+      if (isDraggable && (isTouch || !e.button)) {
         if (!Move2.isBusy()) {
           target = isTouch ? track : window;
           prevBaseEvent = null;
@@ -1895,7 +1897,7 @@ function LazyLoad(Splide22, Components2, options) {
           const _spinner = create("span", options.classes.spinner, _img.parentElement);
           setAttribute(_spinner, ROLE, "presentation");
           images.push({ _img, _Slide, src, srcset, _spinner });
-          display(_img, "none");
+          !_img.src && display(_img, "none");
         }
       });
     });
@@ -1909,7 +1911,8 @@ function LazyLoad(Splide22, Components2, options) {
   }
   function observe() {
     images = images.filter((data) => {
-      if (data._Slide.isWithin(Splide22.index, options.perPage * ((options.preloadPages || 1) + 1))) {
+      const distance = options.perPage * ((options.preloadPages || 1) + 1) - 1;
+      if (data._Slide.isWithin(Splide22.index, distance)) {
         return load(data);
       }
       return true;
@@ -2547,7 +2550,7 @@ var SplideSlide = ({ children: children2, className, ...props }) => {
 };
 /*!
  * Splide.js
- * Version  : 3.2.0
+ * Version  : 3.2.2
  * License  : MIT
  * Copyright: 2021 Naotoshi Fujita
  */
