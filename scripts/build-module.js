@@ -9,6 +9,7 @@ async function buildScript( format = 'esm' ) {
     outfile    : `./dist/js/${ name }.${ format }.js`,
     format,
     external   : [ 'react', 'react-dom' ],
+    target     : [ 'es2019' ],
   } );
 }
 

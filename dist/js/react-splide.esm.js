@@ -2449,11 +2449,13 @@ var Splide2 = class extends React.Component {
     }
   }
   go(control) {
-    this.splide?.go(control);
+    var _a;
+    (_a = this.splide) == null ? void 0 : _a.go(control);
   }
   getSlides() {
+    var _a;
     if (this.splide) {
-      const children2 = this.splide.Components.Elements?.list.children;
+      const children2 = (_a = this.splide.Components.Elements) == null ? void 0 : _a.list.children;
       return children2 && Array.prototype.slice.call(children2) || [];
     }
     return [];
