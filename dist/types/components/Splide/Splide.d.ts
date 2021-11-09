@@ -62,12 +62,6 @@ export declare class Splide extends React.Component<SplideProps> {
      */
     protected bind(splide: SplideCore): void;
     /**
-     * Remounts the provided splide instance.
-     *
-     * @param splide - A splide instance to remount.
-     */
-    protected remount(splide: SplideCore): void;
-    /**
      * Render the track element.
      *
      * @return A track element node.

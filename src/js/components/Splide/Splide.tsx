@@ -90,11 +90,7 @@ export class Splide extends React.Component<SplideProps> {
    * @param splide - A Splide instance.
    */
   sync( splide: SplideCore ): void {
-    if ( this.splide ) {
-      this.splide.sync( splide );
-      this.remount( splide );
-      this.remount( this.splide );
-    }
+    this.splide?.sync( splide );
   }
 
   /**
@@ -137,16 +133,6 @@ export class Splide extends React.Component<SplideProps> {
         } );
       }
     } );
-  }
-
-  /**
-   * Remounts the provided splide instance.
-   *
-   * @param splide - A splide instance to remount.
-   */
-  protected remount( splide: SplideCore ): void {
-    splide.destroy( false );
-    splide.mount();
   }
 
   /**
