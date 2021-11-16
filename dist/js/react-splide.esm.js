@@ -1359,6 +1359,7 @@ function Controller(Splide22, Components2, options) {
     scroll,
     getNext,
     getPrev,
+    getAdjacent,
     getEnd,
     setIndex,
     getIndex,
@@ -2024,7 +2025,7 @@ function Sync(Splide22, Components2, options) {
   const events = [];
   function mount() {
     Splide22.splides.forEach((target) => {
-      !target.isChild && sync(target.splide);
+      !target.isParent && sync(target.splide);
     });
     if (options.isNavigation) {
       navigate();
@@ -2089,9 +2090,13 @@ function Wheel(Splide22, Components2, options) {
   function onWheel(e) {
     const { deltaY } = e;
     if (deltaY) {
-      Splide22.go(deltaY < 0 ? "<" : ">");
-      prevent(e);
+      const backwards = deltaY < 0;
+      Splide22.go(backwards ? "<" : ">");
+      shouldPrevent(backwards) && prevent(e);
     }
+  }
+  function shouldPrevent(backwards) {
+    return !options.releaseWheel || Splide22.state.is(MOVING) || Components2.Controller.getAdjacent(backwards) !== -1;
   }
   return {
     mount
@@ -2258,7 +2263,7 @@ var _Splide = class {
   }
   sync(splide) {
     this.splides.push({ splide });
-    splide.splides.push({ splide: this, isChild: true });
+    splide.splides.push({ splide: this, isParent: true });
     if (this.state.is(IDLE)) {
       this._Components.Sync.remount();
       splide.Components.Sync.remount();
@@ -2547,7 +2552,7 @@ export {
 };
 /*!
  * Splide.js
- * Version  : 3.3.0
+ * Version  : 3.4.0
  * License  : MIT
  * Copyright: 2021 Naotoshi Fujita
  */
