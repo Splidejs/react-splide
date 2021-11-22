@@ -792,12 +792,12 @@ function Slide$1(Splide22, index, slideIndex, slide) {
     }
   }
   function updateVisibility(visible) {
-    const ariaHidden = !visible && !isActive();
-    setAttribute(slide, ARIA_HIDDEN, ariaHidden || null);
-    setAttribute(slide, TAB_INDEX, !ariaHidden && options.slideFocus ? 0 : null);
+    const hidden = !visible && (!isActive() || isClone);
+    setAttribute(slide, ARIA_HIDDEN, hidden || null);
+    setAttribute(slide, TAB_INDEX, !hidden && options.slideFocus ? 0 : null);
     if (focusableNodes) {
       focusableNodes.forEach((node) => {
-        setAttribute(node, TAB_INDEX, ariaHidden ? -1 : null);
+        setAttribute(node, TAB_INDEX, hidden ? -1 : null);
       });
     }
     if (visible !== hasClass(slide, CLASS_VISIBLE)) {
@@ -1849,9 +1849,10 @@ function Drag(Splide22, Components2, options) {
   };
 }
 var IE_ARROW_KEYS = ["Left", "Right", "Up", "Down"];
+var KEYBOARD_EVENT = "keydown";
 function Keyboard(Splide22, Components2, options) {
   const { on, bind, unbind } = EventInterface(Splide22);
-  const { root } = Components2.Elements;
+  const { root } = Splide22;
   const { resolve } = Components2.Direction;
   let target;
   let disabled;
@@ -1861,7 +1862,7 @@ function Keyboard(Splide22, Components2, options) {
     on(EVENT_MOVE, onMove);
   }
   function init() {
-    const { keyboard = "global" } = options;
+    const { keyboard } = options;
     if (keyboard) {
       if (keyboard === "focused") {
         target = root;
@@ -1869,19 +1870,23 @@ function Keyboard(Splide22, Components2, options) {
       } else {
         target = window;
       }
-      bind(target, "keydown", onKeydown);
+      bind(target, KEYBOARD_EVENT, onKeydown);
     }
   }
   function destroy() {
-    unbind(target, "keydown");
+    unbind(target, KEYBOARD_EVENT);
     if (isHTMLElement(target)) {
       removeAttribute(target, TAB_INDEX);
     }
   }
+  function disable(value) {
+    disabled = value;
+  }
   function onMove() {
+    const _disabled = disabled;
     disabled = true;
     nextTick(() => {
-      disabled = false;
+      disabled = _disabled;
     });
   }
   function onUpdated() {
@@ -1901,7 +1906,8 @@ function Keyboard(Splide22, Components2, options) {
   }
   return {
     mount,
-    destroy
+    destroy,
+    disable
   };
 }
 var SRC_DATA_ATTRIBUTE = `${DATA_ATTRIBUTE}-lazy`;
@@ -2200,6 +2206,7 @@ var DEFAULTS = {
   pauseOnHover: true,
   pauseOnFocus: true,
   resetProgress: true,
+  keyboard: true,
   easing: "cubic-bezier(0.25, 1, 0.5, 1)",
   drag: true,
   direction: "ltr",
@@ -2604,7 +2611,7 @@ var SplideSlide = ({ children: children2, className, ...props }) => {
 };
 /*!
  * Splide.js
- * Version  : 3.5.8
+ * Version  : 3.6.1
  * License  : MIT
  * Copyright: 2021 Naotoshi Fujita
  */
