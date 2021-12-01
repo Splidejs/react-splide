@@ -2611,7 +2611,7 @@ var SplideSlide = ({ children: children2, className, ...props }) => {
 };
 /*!
  * Splide.js
- * Version  : 3.6.1
+ * Version  : 3.6.8
  * License  : MIT
  * Copyright: 2021 Naotoshi Fujita
  */
