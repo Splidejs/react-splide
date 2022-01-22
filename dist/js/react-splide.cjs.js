@@ -6,24 +6,29 @@ var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
 var __export = (target, all) => {
-  __markAsModule(target);
   for (var name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __reExport = (target, module2, desc) => {
+var __reExport = (target, module2, copyDefault, desc) => {
   if (module2 && typeof module2 === "object" || typeof module2 === "function") {
     for (let key of __getOwnPropNames(module2))
-      if (!__hasOwnProp.call(target, key) && key !== "default")
+      if (!__hasOwnProp.call(target, key) && (copyDefault || key !== "default"))
         __defProp(target, key, { get: () => module2[key], enumerable: !(desc = __getOwnPropDesc(module2, key)) || desc.enumerable });
   }
   return target;
 };
-var __toModule = (module2) => {
-  return __reExport(__markAsModule(__defProp(module2 != null ? __create(__getProtoOf(module2)) : {}, "default", module2 && module2.__esModule && "default" in module2 ? { get: () => module2.default, enumerable: true } : { value: module2, enumerable: true })), module2);
+var __toESM = (module2, isNodeMode) => {
+  return __reExport(__markAsModule(__defProp(module2 != null ? __create(__getProtoOf(module2)) : {}, "default", !isNodeMode && module2 && module2.__esModule ? { get: () => module2.default, enumerable: true } : { value: module2, enumerable: true })), module2);
 };
+var __toCommonJS = /* @__PURE__ */ ((cache) => {
+  return (module2, temp) => {
+    return cache && cache.get(module2) || (temp = __reExport(__markAsModule({}), module2, 1), cache && cache.set(module2, temp), temp);
+  };
+})(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
 
 // src/js/index.ts
-__export(exports, {
+var js_exports = {};
+__export(js_exports, {
   Splide: () => Splide2,
   SplideSlide: () => SplideSlide
 });
@@ -2401,7 +2406,7 @@ Splide.defaults = {};
 Splide.STATES = STATES;
 
 // src/js/components/Splide/Splide.tsx
-var import_react = __toModule(require("react"));
+var import_react = __toESM(require("react"));
 
 // src/js/constants/events.ts
 var EVENTS = [
@@ -2602,13 +2607,14 @@ var Splide2 = class extends import_react.default.Component {
 };
 
 // src/js/components/SplideSlide/SplideSlide.tsx
-var import_react2 = __toModule(require("react"));
+var import_react2 = __toESM(require("react"));
 var SplideSlide = ({ children: children2, className, ...props }) => {
   return /* @__PURE__ */ import_react2.default.createElement("li", {
     className: classNames("splide__slide", className),
     ...props
   }, children2);
 };
+module.exports = __toCommonJS(js_exports);
 /*!
  * Splide.js
  * Version  : 3.6.11
