@@ -1977,7 +1977,7 @@ function LazyLoad(Splide22, Components2, options) {
     bind(_img, "load error", (e) => {
       onLoad(data, e.type === "error");
     });
-    ["src", "srcset"].forEach((name) => {
+    ["srcset", "src"].forEach((name) => {
       if (data[name]) {
         setAttribute(_img, name, data[name]);
         removeAttribute(_img, name === "src" ? SRC_DATA_ATTRIBUTE : SRCSET_DATA_ATTRIBUTE);
@@ -2617,7 +2617,7 @@ var SplideSlide = ({ children: children2, className, ...props }) => {
 module.exports = __toCommonJS(js_exports);
 /*!
  * Splide.js
- * Version  : 3.6.11
+ * Version  : 3.6.12
  * License  : MIT
  * Copyright: 2022 Naotoshi Fujita
  */
