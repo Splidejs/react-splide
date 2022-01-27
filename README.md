@@ -51,6 +51,12 @@ export function Slider() {
 Visit [here](https://splidejs.com/integration/react-splide/) for more details.
 
 
+## Support Splide
+
+Please support the project if you like it!
+- [GitHub Sponsors](https://github.com/sponsors/NaotoshiFujita)
+
+
 ## License
 React Splide and Splide are released under the MIT license.
 © 2021 Naotoshi Fujita
