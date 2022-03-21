@@ -4,7 +4,7 @@ async function buildApp() {
   return esbuild.build( {
     entryPoints: [ `./src/js/app.tsx` ],
     bundle     : true,
-    outfile    : `./dist/js/app.js`,
+    outfile    : `./dist/app.js`,
     minify     : true,
   } );
 }

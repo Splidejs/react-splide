@@ -1,19 +1,19 @@
 {
   "compilerOptions": {
-		"allowJs": true,
-		"skipLibCheck": true,
-		"esModuleInterop": true,
-		"strict": false,
-		"module": "esnext",
-		"moduleResolution": "node",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "strict": false,
+    "module": "esnext",
+    "moduleResolution": "node",
     "lib": [
       "dom",
       "es6"
     ],
-		"jsx": "react"
+    "jsx": "react"
   },
   "include": [
-    "src/js/**/*.ts",
+    "src/js/**/*.ts"
   ],
   "exclude": [
     "node_modules",

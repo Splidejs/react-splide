@@ -20,6 +20,6 @@ async function buildModule() {
   ] );
 }
 
-buildModule().catch( e => console.error( e ) );
+buildModule().catch( console.error );
 exports.buildScript = buildScript;
 exports.buildModule = buildModule;

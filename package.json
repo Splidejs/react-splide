@@ -37,6 +37,7 @@
     "chokidar": "^3.5.3",
     "esbuild": "^0.14.12",
     "eslint": "^8.7.0",
+    "fs-extra": "^10.0.1",
     "gh-pages": "^3.2.3",
     "jest": "^27.4.7",
     "react": "^17.0.2",
@@ -49,9 +50,16 @@
     "develop": "node ./scripts/develop.js",
     "build:module": "node ./scripts/build-module.js",
     "build:types": "node scripts/clean.js && tsc --emitDeclarationOnly",
-    "build:all": "npm run build:module && npm run build:types",
+    "build:all": "npm run build:module && npm run build:types && npm run copy",
+    "copy": "node scripts/copy-css.js",
     "test": "jest",
     "eslint": "eslint src",
     "deploy": "gh-pages -d examples/dist"
+  },
+  "exports": {
+    ".": "./dist/js/react-splide.esm.js",
+    "./css": "./dist/css/splide.min.css",
+    "./css/core": "./dist/css/splide-core.min.css",
+    "./css/*": "./dist/css/themes/splide-*.min.css"
   }
 }
