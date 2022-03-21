@@ -5,7 +5,7 @@ import { BasicExample } from './components/BasicExample';
 import { DynamicSlidesExample } from './components/DynamicSlidesExample';
 import { ReactivityExample } from './components/ReactivityExample';
 import { ThumbnailsExample } from './components/ThumbnailsExample';
-import '@splidejs/react-splide/css/example';
+import '@splidejs/react-splide/css/skyblue';
 import '../css/style.css';
 
 
@@ -23,7 +23,6 @@ const App: React.VoidFunctionComponent = () => {
     </div>
   );
 };
-
 
 document.addEventListener( 'DOMContentLoaded', () => {
   render( <App/>, document.getElementById( 'app' ) );
