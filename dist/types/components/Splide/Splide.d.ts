@@ -62,15 +62,18 @@ export declare class Splide extends React.Component<SplideProps> {
      */
     protected bind(splide: SplideCore): void;
     /**
-     * Render the track element.
+     * Omits specified keys from props.
      *
-     * @return A track element node.
+     * @param props - An object with props.
+     * @param keys  - An array with keys to omit.
+     *
+     * @return An object with props without specified keys.
      */
-    protected renderTrack(): ReactNode;
+    omit<K extends keyof SplideProps>(props: SplideProps, keys: readonly K[]): Omit<SplideProps, K>;
     /**
-     * Render the splide slider elements.
+     * Render the splide carousel elements.
      *
-     * @return A root element.
+     * @return A root node.
      */
     render(): ReactNode;
 }

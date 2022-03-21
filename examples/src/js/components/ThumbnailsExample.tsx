@@ -1,6 +1,6 @@
-import { Options } from '@splidejs/splide';
-import React, { ReactNode, ReactNodeArray } from 'react';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
+import { Options } from '@splidejs/splide';
+import React, { ReactNode } from 'react';
 import { generateSlides } from '../utils';
 
 
@@ -29,7 +29,7 @@ export class ThumbnailsExample extends React.Component<{}> {
    *
    * @return Slide nodes.
    */
-  renderSlides(): ReactNodeArray {
+  renderSlides(): ReactNode[] {
     return generateSlides().map( slide => (
       <SplideSlide key={ slide.src }>
         <img src={ slide.src } alt={ slide.alt }/>
@@ -66,13 +66,21 @@ export class ThumbnailsExample extends React.Component<{}> {
 
     return (
       <div className="wrapper">
-        <h2>Thumbnail Slider</h2>
+        <h2 id="thumbnail-slider-example">Thumbnail Slider</h2>
 
-        <Splide options={ mainOptions } ref={ this.mainRef }>
+        <Splide
+          options={ mainOptions }
+          ref={ this.mainRef }
+          aria-labelledby="thumbnail-slider-example"
+        >
           { this.renderSlides() }
         </Splide>
 
-        <Splide options={ thumbsOptions } ref={ this.thumbsRef }>
+        <Splide
+          options={ thumbsOptions }
+          ref={ this.thumbsRef }
+          aria-label="The carousel with thumbnails. Selecting a thumbnail will change the main carousel"
+        >
           { this.renderSlides() }
         </Splide>
       </div>

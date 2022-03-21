@@ -10,7 +10,7 @@ export const ReactivityExample: React.VoidFunctionComponent = () => {
 
   return (
     <div className="wrapper">
-      <h2>Reactivity Example</h2>
+      <h2 id="reactivity-example-heading">Reactivity Example</h2>
 
       <div style={ { marginBottom: '1rem' } }>
         <label>
@@ -49,7 +49,10 @@ export const ReactivityExample: React.VoidFunctionComponent = () => {
         </label>
       </div>
 
-      <Splide options={ { perPage, height: `${ height }rem`, gap } }>
+      <Splide
+        options={ { perPage, height: `${ height }rem`, gap } }
+        aria-labelledby="reactivity-example-heading"
+      >
         { generateSlides().map( slide => (
           <SplideSlide key={ slide.src }>
             <img src={ slide.src } alt={ slide.alt }/>

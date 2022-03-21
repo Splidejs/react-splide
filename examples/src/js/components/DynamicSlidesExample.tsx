@@ -36,7 +36,7 @@ export class DynamicSlidesExample extends React.Component<{}, State> {
   render(): ReactNode {
     return (
       <div className="wrapper">
-        <h2>Dynamic Slide Example</h2>
+        <h2 id="dynamic-slides-example-heading">Dynamic Slide Example</h2>
 
         <Splide
           options={ {
@@ -45,6 +45,7 @@ export class DynamicSlidesExample extends React.Component<{}, State> {
             height : '10rem',
             gap    : '1rem',
           } }
+          aria-labelledby="dynamic-slides-example-heading"
         >
           { this.state.slides.map( ( slide, index ) => (
             <SplideSlide key={ index }>

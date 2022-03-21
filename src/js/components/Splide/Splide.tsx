@@ -3,6 +3,7 @@ import React, { ReactNode } from 'react';
 import { EVENTS } from '../../constants/events';
 import { SplideProps } from '../../types';
 import { classNames, isEqualDeep, isEqualShallow, merge } from '../../utils';
+import { SplideTrack } from '../SplideTrack/SplideTrack';
 
 
 /**
@@ -136,64 +137,40 @@ export class Splide extends React.Component<SplideProps> {
   }
 
   /**
-   * Render the track element.
+   * Omits specified keys from props.
    *
-   * @return A track element node.
+   * @param props - An object with props.
+   * @param keys  - An array with keys to omit.
+   *
+   * @return An object with props without specified keys.
    */
-  protected renderTrack(): ReactNode {
-    return (
-      <div className="splide__track">
-        <ul className="splide__list">
-          { this.props.children }
-        </ul>
-      </div>
-    );
+  omit<K extends keyof SplideProps>( props: SplideProps, keys: readonly K[] ): Omit<SplideProps, K> {
+    keys.forEach( key => {
+      if ( Object.prototype.hasOwnProperty.call( props, key ) ) {
+        delete props[ key ];
+      }
+    } );
+
+    return props;
   }
 
   /**
-   * Render the splide slider elements.
+   * Render the splide carousel elements.
    *
-   * @return A root element.
+   * @return A root node.
    */
   render(): ReactNode {
-    const {
-      id,
-      className,
-      hasSliderWrapper,
-      hasAutoplayProgress,
-      hasAutoplayControls,
-      playButtonLabel  = 'Play',
-      pauseButtonLabel = 'Pause',
-      renderControls,
-    } = this.props;
+    const { className, as = 'div', hasTrack = true, children, ...props } = this.props;
+    const Root = as;
 
     return (
-      <div
-        id={ id }
+      <Root
         className={ classNames( 'splide', className ) }
         ref={ this.splideRef }
+        { ...this.omit( props, [ 'options', ...EVENTS.map( event => event[ 1 ] ) ] ) }
       >
-        { hasSliderWrapper
-          ? <div className="splide__slider">{ this.renderTrack() }</div>
-          : this.renderTrack()
-        }
-
-        { hasAutoplayProgress &&
-        <div className="splide__progress">
-          <div className="splide__progress__bar">
-          </div>
-        </div>
-        }
-
-        { hasAutoplayControls &&
-        <div className="splide__autoplay">
-          <button className="splide__play">{ playButtonLabel }</button>
-          <button className="splide__pause">{ pauseButtonLabel }</button>
-        </div>
-        }
-
-        { renderControls && renderControls() }
-      </div>
+        { hasTrack ? <SplideTrack>{ children }</SplideTrack> : children }
+      </Root>
     );
   }
 }

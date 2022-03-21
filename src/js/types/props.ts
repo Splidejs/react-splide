@@ -1,18 +1,28 @@
 import { ComponentConstructor, Options } from '@splidejs/splide';
-import { ReactNode, ReactNodeArray } from 'react';
+import { DOMAttributes, HTMLAttributes } from 'react';
 import { SplideEventHandlers } from './events';
 
 
-export interface SplideProps extends Partial<SplideEventHandlers> {
-  id?: string;
-  className?: string;
+/**
+ * Properties of the Splide component.
+ *
+ * @since 0.1.0
+ */
+export interface SplideProps extends
+  SplideHTMLAttributes,
+  Partial<SplideEventHandlers>
+{
   options?: Options;
+  hasTrack?: boolean;
+  as?: 'div' | 'section' | 'header' | 'footer' | 'nav';
   Extensions?: Record<string, ComponentConstructor>;
   Transition?: ComponentConstructor;
-  hasSliderWrapper?: boolean;
-  hasAutoplayProgress?: boolean;
-  hasAutoplayControls?: boolean;
-  playButtonLabel?: string;
-  pauseButtonLabel?: string;
-  renderControls?: () => ReactNode | ReactNodeArray;
 }
+
+/**
+ * Excludes event handlers used in Splide.
+ *
+ * @since 0.7.0
+ */
+export interface SplideHTMLAttributes extends
+  Partial<Omit<HTMLAttributes<HTMLElement>, keyof DOMAttributes<HTMLElement>>> {}

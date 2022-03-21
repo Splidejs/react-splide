@@ -6,7 +6,7 @@ import { generateSlides } from '../utils';
 export const BasicExample: React.VoidFunctionComponent = () => {
   return (
     <div className="wrapper">
-      <h2>Basic Example</h2>
+      <h2 id="basic-example-heading">Basic Example</h2>
 
       <Splide
         options={ {
@@ -15,6 +15,7 @@ export const BasicExample: React.VoidFunctionComponent = () => {
           rewind : true,
           gap    : '1rem',
         } }
+        aria-labelledby="basic-example-heading"
         onMoved={ ( splide, newIndex ) => {
           // eslint-disable-next-line
           console.log( 'moved', newIndex );
