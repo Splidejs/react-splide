@@ -22,8 +22,6 @@ export const AutoplayExample: React.VoidFunctionComponent = () => {
         hasTrack={ false }
       >
         <div style={ { position: 'relative' } }>
-          <div className="splide__arrows" /> { /* Placeholder for arrows */ }
-
           <SplideTrack>
             { generateSlides().map( slide => (
               <SplideSlide key={ slide.src }>
@@ -31,8 +29,6 @@ export const AutoplayExample: React.VoidFunctionComponent = () => {
               </SplideSlide>
             ) ) }
           </SplideTrack>
-
-          <div className="splide__pagination" /> { /* Placeholder for pagination dots */ }
         </div>
 
         <div className="splide__progress">

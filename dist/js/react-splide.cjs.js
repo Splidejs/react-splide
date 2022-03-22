@@ -2067,7 +2067,7 @@ function Pagination(Splide22, Components2, options) {
     var length = Splide22.length;
     var classes = options.classes, i18n = options.i18n, perPage = options.perPage;
     var max2 = hasFocus() ? length : ceil(length / perPage);
-    list = Elements2.pagination || create("ul", classes.pagination, Elements2.root);
+    list = Elements2.pagination || create("ul", classes.pagination, Elements2.track.parentElement);
     addClass(list, paginationClasses = CLASS_PAGINATION + "--" + getDirection());
     setAttribute(list, ROLE, "tablist");
     setAttribute(list, ARIA_LABEL, i18n.select);
