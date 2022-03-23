@@ -5,7 +5,7 @@ import { BasicExample } from './components/BasicExample';
 import { DynamicSlidesExample } from './components/DynamicSlidesExample';
 import { ReactivityExample } from './components/ReactivityExample';
 import { ThumbnailsExample } from './components/ThumbnailsExample';
-import '@splidejs/react-splide/css/skyblue';
+import '@splidejs/react-splide/css';
 import '../css/style.css';
 
 

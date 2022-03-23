@@ -14,9 +14,9 @@ export interface SplideProps extends
 {
   options?: Options;
   hasTrack?: boolean;
-  as?: 'div' | 'section' | 'header' | 'footer' | 'nav';
-  Extensions?: Record<string, ComponentConstructor>;
-  Transition?: ComponentConstructor;
+  tag?: 'div' | 'section' | 'header' | 'footer' | 'nav';
+  extensions?: Record<string, ComponentConstructor>;
+  transition?: ComponentConstructor;
 }
 
 /**

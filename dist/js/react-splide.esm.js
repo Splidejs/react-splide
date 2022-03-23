@@ -2635,12 +2635,12 @@ var Splide2 = class extends React2.Component {
     this.slides = [];
   }
   componentDidMount() {
-    const { options, Extensions, Transition } = this.props;
+    const { options, extensions, transition } = this.props;
     const { current } = this.splideRef;
     if (current) {
       this.splide = new Splide(current, options);
       this.bind(this.splide);
-      this.splide.mount(Extensions, Transition);
+      this.splide.mount(extensions, transition);
       this.options = merge2({}, options || {});
       this.slides = this.getSlides();
     }
@@ -2703,8 +2703,7 @@ var Splide2 = class extends React2.Component {
     return props;
   }
   render() {
-    const { className, as = "div", hasTrack = true, children: children2, ...props } = this.props;
-    const Root = as;
+    const { className, tag: Root = "div", hasTrack = true, children: children2, ...props } = this.props;
     return /* @__PURE__ */ React2.createElement(Root, {
       className: classNames("splide", className),
       ref: this.splideRef,

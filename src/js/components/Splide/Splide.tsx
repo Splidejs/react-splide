@@ -36,13 +36,13 @@ export class Splide extends React.Component<SplideProps> {
    * Called when the component is mounted.
    */
   componentDidMount(): void {
-    const { options, Extensions, Transition } = this.props;
+    const { options, extensions, transition } = this.props;
     const { current } = this.splideRef;
 
     if ( current ) {
       this.splide = new SplideCore( current, options );
       this.bind( this.splide );
-      this.splide.mount( Extensions, Transition );
+      this.splide.mount( extensions, transition );
 
       this.options = merge( {}, options || {} );
       this.slides  = this.getSlides();
@@ -160,8 +160,7 @@ export class Splide extends React.Component<SplideProps> {
    * @return A root node.
    */
   render(): ReactNode {
-    const { className, as = 'div', hasTrack = true, children, ...props } = this.props;
-    const Root = as;
+    const { className, tag: Root = 'div', hasTrack = true, children, ...props } = this.props;
 
     return (
       <Root
