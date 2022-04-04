@@ -4,27 +4,20 @@ var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
 var __export = (target, all) => {
   for (var name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __reExport = (target, module2, copyDefault, desc) => {
-  if (module2 && typeof module2 === "object" || typeof module2 === "function") {
-    for (let key of __getOwnPropNames(module2))
-      if (!__hasOwnProp.call(target, key) && (copyDefault || key !== "default"))
-        __defProp(target, key, { get: () => module2[key], enumerable: !(desc = __getOwnPropDesc(module2, key)) || desc.enumerable });
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
-  return target;
+  return to;
 };
-var __toESM = (module2, isNodeMode) => {
-  return __reExport(__markAsModule(__defProp(module2 != null ? __create(__getProtoOf(module2)) : {}, "default", !isNodeMode && module2 && module2.__esModule ? { get: () => module2.default, enumerable: true } : { value: module2, enumerable: true })), module2);
-};
-var __toCommonJS = /* @__PURE__ */ ((cache) => {
-  return (module2, temp) => {
-    return cache && cache.get(module2) || (temp = __reExport(__markAsModule({}), module2, 1), cache && cache.set(module2, temp), temp);
-  };
-})(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target, mod));
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/js/index.ts
 var js_exports = {};
@@ -33,6 +26,7 @@ __export(js_exports, {
   SplideSlide: () => SplideSlide,
   SplideTrack: () => SplideTrack
 });
+module.exports = __toCommonJS(js_exports);
 
 // node_modules/@splidejs/splide/dist/js/splide.esm.js
 function _defineProperties(target, props) {
@@ -174,7 +168,7 @@ function assign(object) {
   return object;
 }
 function merge(object) {
-  slice(arguments).forEach(function(source) {
+  slice(arguments, 1).forEach(function(source) {
     forOwn(source, function(value, key) {
       if (isArray(value)) {
         object[key] = value.slice();
@@ -435,7 +429,7 @@ function RequestInterval(interval, onInterval, onUpdate, limit) {
   var count = 0;
   function update() {
     if (!paused) {
-      rate = min((now() - startTime) / interval, 1);
+      rate = interval ? min((now() - startTime) / interval, 1) : 1;
       onUpdate && onUpdate(rate);
       if (rate >= 1) {
         onInterval();
@@ -536,19 +530,19 @@ function Media(Splide22, Components2, options) {
     queries.push([options2, queryList]);
   }
   function update() {
+    var destroyed = Splide22.state.is(DESTROYED);
     var direction = options.direction;
     var merged = queries.reduce(function(merged2, entry) {
       return merge(merged2, entry[1].matches ? entry[0] : {});
     }, {});
     omit(options);
-    merge(options, merged);
+    Splide22.options = merged;
     if (options.destroy) {
       Splide22.destroy(options.destroy === "completely");
-    } else if (Splide22.state.is(DESTROYED)) {
+    } else if (destroyed) {
       destroy(true);
       Splide22.mount();
     } else {
-      Splide22.options = merged;
       direction !== options.direction && Splide22.refresh();
     }
   }
@@ -605,12 +599,13 @@ var ARIA_CONTROLS = ARIA_PREFIX + "controls";
 var ARIA_CURRENT = ARIA_PREFIX + "current";
 var ARIA_SELECTED = ARIA_PREFIX + "selected";
 var ARIA_LABEL = ARIA_PREFIX + "label";
+var ARIA_LABELLEDBY = ARIA_PREFIX + "labelledby";
 var ARIA_HIDDEN = ARIA_PREFIX + "hidden";
 var ARIA_ORIENTATION = ARIA_PREFIX + "orientation";
 var ARIA_ROLEDESCRIPTION = ARIA_PREFIX + "roledescription";
 var ARIA_LIVE = ARIA_PREFIX + "live";
 var ARIA_RELEVANT = ARIA_PREFIX + "relevant";
-var ALL_ATTRIBUTES = [ROLE, TAB_INDEX, DISABLED, ARIA_CONTROLS, ARIA_CURRENT, ARIA_LABEL, ARIA_HIDDEN, ARIA_ORIENTATION, ARIA_ROLEDESCRIPTION];
+var ALL_ATTRIBUTES = [ROLE, TAB_INDEX, DISABLED, ARIA_CONTROLS, ARIA_CURRENT, ARIA_LABEL, ARIA_LABELLEDBY, ARIA_HIDDEN, ARIA_ORIENTATION, ARIA_ROLEDESCRIPTION];
 var CLASS_ROOT = PROJECT_CODE;
 var CLASS_TRACK = PROJECT_CODE + "__track";
 var CLASS_LIST = PROJECT_CODE + "__list";
@@ -673,8 +668,6 @@ function Elements(Splide22, Components2, options) {
   var i18n = options.i18n;
   var elements = {};
   var slides = [];
-  var rootRole = getAttribute(root, ROLE);
-  var rootLabel = getAttribute(root, ARIA_LABEL);
   var rootClasses = [];
   var trackClasses = [];
   var track;
@@ -699,16 +692,12 @@ function Elements(Splide22, Components2, options) {
     });
   }
   function destroy(completely) {
+    var attrs = ALL_ATTRIBUTES.concat("style");
     empty(slides);
     removeClass(root, rootClasses);
     removeClass(track, trackClasses);
-    removeAttribute([track, list], ALL_ATTRIBUTES.concat("style"));
-    removeAttribute(root, "style");
-    if (completely) {
-      removeAttribute(root, ALL_ATTRIBUTES);
-      setAttribute(root, ROLE, rootRole);
-    }
-    setAttribute(root, ARIA_LABEL, rootLabel);
+    removeAttribute([track, list], attrs);
+    removeAttribute(root, completely ? attrs : ["style", ARIA_ROLEDESCRIPTION]);
   }
   function update() {
     removeClass(root, rootClasses);
@@ -717,6 +706,8 @@ function Elements(Splide22, Components2, options) {
     trackClasses = getClasses(CLASS_TRACK);
     addClass(root, rootClasses);
     addClass(track, trackClasses);
+    setAttribute(root, ARIA_LABEL, options.label);
+    setAttribute(root, ARIA_LABELLEDBY, options.labelledby);
   }
   function collect() {
     track = find("." + CLASS_TRACK);
@@ -742,12 +733,14 @@ function Elements(Splide22, Components2, options) {
   }
   function init() {
     var id = root.id || uniqueId(PROJECT_CODE);
-    var role = rootRole || root.tagName !== "SECTION" && options.role || "";
+    var role = options.role;
     root.id = id;
     track.id = track.id || id + "-track";
     list.id = list.id || id + "-list";
+    if (!getAttribute(root, ROLE) && root.tagName !== "SECTION" && role) {
+      setAttribute(root, ROLE, role);
+    }
     setAttribute(root, ARIA_ROLEDESCRIPTION, i18n.carousel);
-    getAttribute(root, ROLE) || setAttribute(root, ROLE, role);
     setAttribute(list, ROLE, "presentation");
   }
   function find(selector) {
@@ -2313,7 +2306,7 @@ var I18N = {
   pause: "Pause autoplay",
   carousel: "carousel",
   slide: "slide",
-  select: "Select slide to show",
+  select: "Select a slide to show",
   slideLabel: "%s of %s"
 };
 var DEFAULTS = {
@@ -2429,7 +2422,10 @@ var _Splide = /* @__PURE__ */ function() {
     var root = isString(target) ? query(document, target) : target;
     assert(root, root + " is invalid.");
     this.root = root;
-    options = merge({}, DEFAULTS, _Splide2.defaults, options || {});
+    options = merge({
+      label: getAttribute(root, ARIA_LABEL) || "",
+      labelledby: getAttribute(root, ARIA_LABELLEDBY) || ""
+    }, DEFAULTS, _Splide2.defaults, options || {});
     try {
       merge(options, JSON.parse(getAttribute(root, DATA_ATTRIBUTE)));
     } catch (e) {
@@ -2756,7 +2752,6 @@ var SplideSlide = ({ children: children2, className, ...props }) => {
     ...props
   }, children2);
 };
-module.exports = __toCommonJS(js_exports);
 /*!
  * Splide.js
  * Version  : 4.0.0
