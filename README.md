@@ -32,11 +32,11 @@ Import CSS and components:
 
 ```jsx
 import { Splide, SplideSlide } from '@splidejs/react-splide';
-import '@splidejs/splide/dist/css/themes/splide-default.min.css';
+import '@splidejs/react-splide/css';
 
 export function Slider() {
   return (
-    <Splide options={ { rewind: true } }>
+    <Splide options={ { rewind: true } } aria-label="React Splide Example">
       <SplideSlide>
         <img src="image1.jpg" alt="Image 1"/>
       </SplideSlide>

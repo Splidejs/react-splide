@@ -1,8 +1,8 @@
 /**
  * Merges U to T.
  *
- * @typeParam T - An object to merge to.
- * @typeParam U - An object to to.
+ * @typeParam T - An object to merge U into.
+ * @typeParam U - An object to merge properties from.
  *
  * @return An merged object type.
  */
