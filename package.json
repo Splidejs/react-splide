@@ -1,6 +1,6 @@
 {
   "name": "@splidejs/react-splide",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "The React component for Splide.",
   "author": "Naotoshi Fujita",
   "license": "MIT",
@@ -64,6 +64,6 @@
     "./css/*": "./dist/css/themes/splide-*.min.css"
   },
   "dependencies": {
-    "@splidejs/splide": "^4.0.0"
+    "@splidejs/splide": "^4.0.1"
   }
 }
