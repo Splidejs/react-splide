@@ -1,6 +1,6 @@
 {
   "name": "@splidejs/react-splide",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "description": "The React component for Splide.",
   "author": "Naotoshi Fujita",
   "license": "MIT",
@@ -57,7 +57,7 @@
     ".": {
       "require": "./dist/js/react-splide.cjs.js",
       "import": "./dist/js/react-splide.esm.js",
-      "default": "./dist/js/react-splid.esm.js"
+      "default": "./dist/js/react-splide.esm.js"
     },
     "./css": "./dist/css/splide.min.css",
     "./css/core": "./dist/css/splide-core.min.css",
