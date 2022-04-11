@@ -1,5 +1,5 @@
 import { ComponentConstructor, Options } from '@splidejs/splide';
-import { DOMAttributes, HTMLAttributes } from 'react';
+import React, { DOMAttributes, HTMLAttributes } from 'react';
 import { SplideEventHandlers } from './events';
 
 
@@ -17,6 +17,7 @@ export interface SplideProps extends
   tag?: 'div' | 'section' | 'header' | 'footer' | 'nav';
   extensions?: Record<string, ComponentConstructor>;
   transition?: ComponentConstructor;
+  children?: React.ReactNode;
 }
 
 /**

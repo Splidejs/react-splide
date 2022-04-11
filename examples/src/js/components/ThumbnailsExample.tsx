@@ -18,7 +18,7 @@ export class ThumbnailsExample extends React.Component<{}> {
   /**
    * Set the sync target right after the component is mounted.
    */
-  componentDidMount() {
+  componentDidMount(): void {
     if ( this.mainRef.current && this.thumbsRef.current && this.thumbsRef.current.splide ) {
       this.mainRef.current.sync( this.thumbsRef.current.splide );
     }
