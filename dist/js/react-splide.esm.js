@@ -1168,11 +1168,9 @@ function Move(Splide22, Components2, options) {
     }
   }
   function move(dest, index, prev, callback) {
-    var position = getPosition();
-    var crossing = sign(dest - prev) * orient(toPosition(dest) - position) < 0;
-    if ((dest !== index || crossing) && canShift(dest > prev)) {
+    if (dest !== index && canShift(dest > prev)) {
       cancel();
-      translate(shift(position, dest > prev), true);
+      translate(shift(getPosition(), dest > prev), true);
     }
     set(MOVING);
     emit(EVENT_MOVE, index, prev, dest);
@@ -1194,9 +1192,9 @@ function Move(Splide22, Components2, options) {
   }
   function loop(position) {
     if (Splide22.is(LOOP)) {
-      var diff = orient(position - getPosition());
-      var exceededMin = exceededLimit(false, position) && diff < 0;
-      var exceededMax = exceededLimit(true, position) && diff > 0;
+      var index = toIndex(position);
+      var exceededMax = index > Components2.Controller.getEnd();
+      var exceededMin = index < 0;
       if (exceededMin || exceededMax) {
         position = shift(position, exceededMax);
       }
@@ -1315,7 +1313,7 @@ function Controller(Splide22, Components2, options) {
   }
   function scroll(destination, duration, snap, callback) {
     Components2.Scroll.scroll(destination, duration, snap, function() {
-      setIndex(loop(Move2.toIndex(Move2.getPosition())));
+      setIndex(loop(Move2.toIndex(getPosition())));
       callback && callback();
     });
   }
@@ -1682,7 +1680,7 @@ function Scroll(Splide22, Components2, options) {
     if (Splide22.is(SLIDE) && !noConstrain && exceededLimit()) {
       friction *= FRICTION_FACTOR;
       if (abs(diff) < BOUNCE_DIFF_THRESHOLD) {
-        scroll(getLimit(exceededLimit(true)), BOUNCE_DURATION, false, void 0, true);
+        scroll(getLimit(exceededLimit(true)), BOUNCE_DURATION, false, callback, true);
       }
     }
   }
@@ -2747,7 +2745,7 @@ export {
 };
 /*!
  * Splide.js
- * Version  : 4.0.3
+ * Version  : 4.0.6
  * License  : MIT
  * Copyright: 2022 Naotoshi Fujita
  */
