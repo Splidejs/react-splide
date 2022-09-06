@@ -1550,7 +1550,8 @@ function Arrows(Splide22, Components2, options) {
   return {
     arrows,
     mount,
-    destroy
+    destroy,
+    update
   };
 }
 var INTERVAL_DATA_ATTRIBUTE = DATA_ATTRIBUTE + "-interval";
@@ -2784,7 +2785,7 @@ var SplideSlide = ({ children: children2, className, ...props }) => {
 };
 /*!
  * Splide.js
- * Version  : 4.0.16
+ * Version  : 4.0.17
  * License  : MIT
  * Copyright: 2022 Naotoshi Fujita
  */
