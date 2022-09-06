@@ -1,3 +1,4 @@
+"use strict";
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -16,7 +17,10 @@ var __copyProps = (to, from, except, desc) => {
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target, mod));
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/js/index.ts
@@ -779,7 +783,6 @@ function Slide$1(Splide22, index, slideIndex, slide) {
   var label = getAttribute(slide, ARIA_LABEL);
   var isClone = slideIndex > -1;
   var container = child(slide, "." + CLASS_CONTAINER);
-  var focusableNodes = queryAll(slide, options.focusableNodes || "");
   var destroyed;
   function mount() {
     if (!isClone) {
@@ -845,7 +848,7 @@ function Slide$1(Splide22, index, slideIndex, slide) {
     if (!Splide22.state.is([MOVING, SCROLLING])) {
       setAttribute(slide, ARIA_HIDDEN, hidden || "");
     }
-    setAttribute(focusableNodes, TAB_INDEX, hidden ? -1 : "");
+    setAttribute(queryAll(slide, options.focusableNodes || ""), TAB_INDEX, hidden ? -1 : "");
     if (slideFocus) {
       setAttribute(slide, TAB_INDEX, hidden ? -1 : 0);
     }
@@ -904,11 +907,6 @@ function Slides(Splide22, Components2, options) {
     init();
     on(EVENT_REFRESH, destroy);
     on(EVENT_REFRESH, init);
-    on([EVENT_MOUNTED, EVENT_REFRESH], function() {
-      Slides2.sort(function(Slide1, Slide2) {
-        return Slide1.index - Slide2.index;
-      });
-    });
   }
   function init() {
     slides.forEach(function(slide, index) {
@@ -930,6 +928,9 @@ function Slides(Splide22, Components2, options) {
     var object = Slide$1(Splide22, index, slideIndex, slide);
     object.mount();
     Slides2.push(object);
+    Slides2.sort(function(Slide1, Slide2) {
+      return Slide1.index - Slide2.index;
+    });
   }
   function get(excludeClones) {
     return excludeClones ? filter(function(Slide2) {
@@ -1374,7 +1375,7 @@ function Controller(Splide22, Components2, options) {
     return destination ? dest : loop(dest);
   }
   function computeDestIndex(dest, from, snapPage) {
-    if (isEnough()) {
+    if (isEnough() || hasFocus()) {
       var end = getEnd();
       var index = computeMovableDestIndex(dest);
       if (index !== dest) {
@@ -1469,8 +1470,8 @@ function Arrows(Splide22, Components2, options) {
   var on = event.on, bind = event.bind, emit = event.emit;
   var classes = options.classes, i18n = options.i18n;
   var Elements2 = Components2.Elements, Controller2 = Components2.Controller;
-  var userArrows = Elements2.arrows, track = Elements2.track;
-  var wrapper = userArrows;
+  var placeholder = Elements2.arrows, track = Elements2.track;
+  var wrapper = placeholder;
   var prev = Elements2.prev;
   var next = Elements2.next;
   var created;
@@ -1508,7 +1509,7 @@ function Arrows(Splide22, Components2, options) {
     event.destroy();
     removeClass(wrapper, wrapperClasses);
     if (created) {
-      remove(userArrows ? [prev, next] : wrapper);
+      remove(placeholder ? [prev, next] : wrapper);
       prev = next = null;
     } else {
       removeAttribute([prev, next], ALL_ATTRIBUTES);
@@ -1523,12 +1524,12 @@ function Arrows(Splide22, Components2, options) {
     Controller2.go(control, true);
   }
   function createArrows() {
-    wrapper = userArrows || create("div", classes.arrows);
+    wrapper = placeholder || create("div", classes.arrows);
     prev = createArrow(true);
     next = createArrow(false);
     created = true;
     append(wrapper, [prev, next]);
-    !userArrows && before(wrapper, track);
+    !placeholder && before(wrapper, track);
   }
   function createArrow(prev2) {
     var arrow = '<button class="' + classes.arrow + " " + (prev2 ? classes.prev : classes.next) + '" type="button"><svg xmlns="' + XML_NAME_SPACE + '" viewBox="0 0 ' + SIZE + " " + SIZE + '" width="' + SIZE + '" height="' + SIZE + '" focusable="false"><path d="' + (options.arrowPath || PATH) + '" />';
@@ -1673,6 +1674,7 @@ function Scroll(Splide22, Components2, options) {
   var set = Splide22.state.set;
   var Move2 = Components2.Move;
   var getPosition = Move2.getPosition, getLimit = Move2.getLimit, exceededLimit = Move2.exceededLimit, translate = Move2.translate;
+  var isSlide = Splide22.is(SLIDE);
   var interval;
   var callback;
   var friction = 1;
@@ -1683,7 +1685,7 @@ function Scroll(Splide22, Components2, options) {
   function scroll(destination, duration, snap, onScrolled, noConstrain) {
     var from = getPosition();
     clear();
-    if (snap) {
+    if (snap && (!isSlide || !exceededLimit())) {
       var size = Components2.Layout.sliderSize();
       var offset = sign(destination) * size * floor(abs(destination) / size) || 0;
       destination = Move2.toPosition(Components2.Controller.toDest(destination % size)) + offset;
@@ -1707,7 +1709,7 @@ function Scroll(Splide22, Components2, options) {
     var target = from + (to - from) * easing(rate);
     var diff = (target - position) * friction;
     translate(position + diff);
-    if (Splide22.is(SLIDE) && !noConstrain && exceededLimit()) {
+    if (isSlide && !noConstrain && exceededLimit()) {
       friction *= FRICTION_FACTOR;
       if (abs(diff) < BOUNCE_DIFF_THRESHOLD) {
         scroll(getLimit(exceededLimit(true)), BOUNCE_DURATION, false, callback, true);
@@ -1973,17 +1975,26 @@ var IMAGE_SELECTOR = "[" + SRC_DATA_ATTRIBUTE + "], [" + SRCSET_DATA_ATTRIBUTE +
 function LazyLoad(Splide22, Components2, options) {
   var _EventInterface12 = EventInterface(Splide22), on = _EventInterface12.on, off = _EventInterface12.off, bind = _EventInterface12.bind, emit = _EventInterface12.emit;
   var isSequential = options.lazyLoad === "sequential";
-  var events = [EVENT_MOUNTED, EVENT_REFRESH, EVENT_MOVED, EVENT_SCROLLED];
+  var events = [EVENT_MOVED, EVENT_SCROLLED];
   var entries = [];
   function mount() {
     if (options.lazyLoad) {
       init();
       on(EVENT_REFRESH, init);
-      isSequential || on(events, observe);
     }
   }
   function init() {
     empty(entries);
+    register();
+    if (isSequential) {
+      loadNext();
+    } else {
+      off(events);
+      on(events, check);
+      check();
+    }
+  }
+  function register() {
     Components2.Slides.forEach(function(Slide2) {
       queryAll(Slide2.slide, IMAGE_SELECTOR).forEach(function(img) {
         var src = getAttribute(img, SRC_DATA_ATTRIBUTE);
@@ -1997,9 +2008,8 @@ function LazyLoad(Splide22, Components2, options) {
         }
       });
     });
-    isSequential && loadNext();
   }
-  function observe() {
+  function check() {
     entries = entries.filter(function(data) {
       var distance = options.perPage * ((options.preloadPages || 1) + 1) - 1;
       return data[1].isWithin(Splide22.index, distance) ? load(data) : true;
@@ -2031,7 +2041,8 @@ function LazyLoad(Splide22, Components2, options) {
   }
   return {
     mount,
-    destroy: apply(empty, entries)
+    destroy: apply(empty, entries),
+    check
   };
 }
 function Pagination(Splide22, Components2, options) {
@@ -2040,13 +2051,16 @@ function Pagination(Splide22, Components2, options) {
   var Slides2 = Components2.Slides, Elements2 = Components2.Elements, Controller2 = Components2.Controller;
   var hasFocus = Controller2.hasFocus, getIndex = Controller2.getIndex, go = Controller2.go;
   var resolve = Components2.Direction.resolve;
+  var placeholder = Elements2.pagination;
   var items = [];
   var list;
   var paginationClasses;
   function mount() {
     destroy();
     on([EVENT_UPDATED, EVENT_REFRESH], mount);
-    if (options.pagination && Slides2.isEnough()) {
+    var enabled = options.pagination && Slides2.isEnough();
+    placeholder && display(placeholder, enabled ? "" : "none");
+    if (enabled) {
       on([EVENT_MOVE, EVENT_SCROLL, EVENT_SCROLLED], update);
       createPagination();
       update();
@@ -2058,7 +2072,7 @@ function Pagination(Splide22, Components2, options) {
   }
   function destroy() {
     if (list) {
-      remove(Elements2.pagination ? slice(list.children) : list);
+      remove(placeholder ? slice(list.children) : list);
       removeClass(list, paginationClasses);
       empty(items);
       list = null;
@@ -2069,7 +2083,7 @@ function Pagination(Splide22, Components2, options) {
     var length = Splide22.length;
     var classes = options.classes, i18n = options.i18n, perPage = options.perPage;
     var max2 = hasFocus() ? length : ceil(length / perPage);
-    list = Elements2.pagination || create("ul", classes.pagination, Elements2.track.parentElement);
+    list = placeholder || create("ul", classes.pagination, Elements2.track.parentElement);
     addClass(list, paginationClasses = CLASS_PAGINATION + "--" + getDirection());
     setAttribute(list, ROLE, "tablist");
     setAttribute(list, ARIA_LABEL, i18n.select);
@@ -2770,7 +2784,7 @@ var SplideSlide = ({ children: children2, className, ...props }) => {
 };
 /*!
  * Splide.js
- * Version  : 4.0.7
+ * Version  : 4.0.16
  * License  : MIT
  * Copyright: 2022 Naotoshi Fujita
  */
