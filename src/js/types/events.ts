@@ -30,6 +30,7 @@ export type SplideEventHandlerMap = {
   onAutoplayPlaying: 'autoplay:playing';
   onAutoplayPause: 'autoplay:pause';
   onLazyLoadLoaded: 'lazyload:loaded';
+  onOverflow: 'overflow';
 }
 
 export type SplideEventHandlers = {
