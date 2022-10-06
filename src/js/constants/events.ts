@@ -27,6 +27,7 @@ import {
   EVENT_SCROLLED,
   EVENT_UPDATED,
   EVENT_VISIBLE,
+  EVENT_OVERFLOW,
   EventMap,
 } from '@splidejs/splide';
 import { SplideEventHandlerMap } from '../types';
@@ -61,4 +62,5 @@ export const EVENTS: Array<[ keyof EventMap, keyof SplideEventHandlerMap ]> = [
   [ EVENT_AUTOPLAY_PLAYING, 'onAutoplayPlaying' ],
   [ EVENT_AUTOPLAY_PAUSE, 'onAutoplayPause' ],
   [ EVENT_LAZYLOAD_LOADED, 'onLazyLoadLoaded' ],
+  [ EVENT_OVERFLOW, 'onOverflow' ],
 ];
